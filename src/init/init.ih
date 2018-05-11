@@ -1,0 +1,11 @@
+#include "init.h"
+
+#include "../bs.h"
+
+#include <math.h>
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <numeric>
+
+using namespace std;
