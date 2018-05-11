@@ -1,6 +1,6 @@
 #include "init.h"
 
-#include "../bs.h"
+#include "../bs/bs.h"
 
 #include <math.h>
 #include <algorithm>

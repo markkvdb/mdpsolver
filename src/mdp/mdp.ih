@@ -1,3 +1,5 @@
 #include "mdp.h"
 
+#include "../bs/bs.h"
+
 using namespace std;

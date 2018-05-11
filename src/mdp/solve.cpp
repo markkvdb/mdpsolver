@@ -12,5 +12,5 @@ void MDP::solve()
     {
         // Compute for each s in S the optimal maintenance action.
         
-    } (converged())
+    } while(converged());
 }
