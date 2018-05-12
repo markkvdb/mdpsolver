@@ -7,11 +7,32 @@
 
 class MDP
 {
+    // Values
     std::vector<num_t> d_valueA;
     std::vector<num_t> d_valueB;
 
-    size_t  d_nStates;
-    num_t   d_eps;
+    // Expected costs for every production rate
+    std::vector<num_t> d_expectedCost;
+
+    // Maintenance costs
+    num_t const d_ccm;
+    num_t const d_cpm;
+    num_t const d_C;
+
+    // State and action space
+    size_t const d_nStates;
+    size_t const d_pi;
+    size_t const d_nRates;
+
+    // Jump probabilities
+    std::vector<std::vector<num_t>> const d_prop1;
+    std::vector<std::vector<num_t>> const d_prop2;
+
+    // Costs
+    std::vector<num_t> const d_terminalCosts;
+
+    // Value iteration parameter
+    num_t const d_eps;
 
     public:
         MDP(Init const &init);
@@ -22,7 +43,7 @@ class MDP
         bool    converged();
         void    exp_cost();
         num_t   expected_cost(size_t state1, size_t state2);
-        num_t   expected_costs(size_t state1, size_t state2, num_t prodRate1, num_t prodRate2);
+        num_t   expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2);
 
         size_t hash(size_t state1, size_t state2);
 };
