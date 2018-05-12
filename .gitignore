@@ -276,3 +276,10 @@ TSWLatexianTemp*
 
 # Delete DS_STORE
 *.DS_STORE
+
+# VS Code garbage
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
