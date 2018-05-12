@@ -1,5 +1,18 @@
 # MDP Solver #
 
-This project can be divided into two parts, where each part 'basically' constitutes one class. 
+A C++ implementation of the Value Iteration algorithm for Markov Decision Process. It is tuned to handle a special class of MDPs. This class of problems is described in the report. 
 
-The Init class depends on the application. The C++ class should define a full MDP formulation. The MDP class consists of all ingredients for the value iteration to solve the MDP formulated in the Init class. The algorithms used are optimised for a special MDP. 
+## Requirements ##
+1. Recent compiler. For mac, this can be installed by `brew install gcc`.
+1. Boost library. For mac, this can be installed by `brew install boost`.
+
+## Installation ## 
+1. Clone repository, i.e., go to folder location and type `git clone https://github.com/markkvdb/mdpsolver` in terminal.
+2. Go to this new folder and run makefile, that is, `cd mdpsolver` and `make`.
+
+## Usage ##
+Following the instructions above will create an executable `mdpsolver`. Run this executable by the command `./mdpsolver`. 
+
+## Improvements ##
+- [ ] Design interface to set parameters of the system.
+- [ ] Automatic graphical output.
