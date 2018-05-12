@@ -10,7 +10,14 @@ void MDP::solve()
 {
     do 
     {
-        // Compute for each s in S the optimal maintenance action.
+        // Set new values to old values
+        d_valueA = d_valueB;
+        
+        // Compute the expected cost for every state and optimal production
+        exp_cost();
+
+        // Obtain new value 
+        value_cost();
         
     } while(converged());
 }

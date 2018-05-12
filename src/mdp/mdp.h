@@ -40,6 +40,10 @@ class MDP
         void solve();
 
     private:
+        void    value_cost();
+        num_t   value_costs(size_t state1, size_t state2);
+        num_t   direct_cost(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2);
+        num_t   direct_costs(size_t state, size_t mainAction);
         bool    converged();
         void    exp_cost();
         num_t   expected_cost(size_t state1, size_t state2);
