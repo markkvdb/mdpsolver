@@ -35,9 +35,11 @@ class MDP
     num_t const d_eps;
 
     public:
+        MDP() = delete;
         MDP(Init const &init);
 
         void solve();
+        void print_all_info();
 
     private:
         void    value_cost();

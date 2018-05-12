@@ -3,10 +3,14 @@
 
 #include <vector>
 
+class MDP;
+
 typedef double num_t;
 
 class Init
 {
+    friend class MDP;
+
     // Maintenance costs
     num_t d_ccm;
     num_t d_cpm;
@@ -29,25 +33,28 @@ class Init
     std::vector<std::vector<num_t>> d_prop1;
     std::vector<std::vector<num_t>> d_prop2;
 
-    num_t d_beta;
-    num_t d_alpha;
+    num_t   d_beta;
+    size_t  d_alpha;
     
     std::vector<num_t> d_detRates;
 
     // Costs
     std::vector<num_t> d_terminalCosts;
+
+    // Value iteration parameter
+    num_t d_eps;
     
     
     public:
         Init();
         Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
-             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha);
+             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, size_t alpha, num_t eps);
 
         void    initialise();
+        void    printTransitionMatrix() const;
 
     private:
         num_t   g(double prodRate) const;
-        void    printTransitionMatrix() const;
         void    setTransitionGamma();
         void    setCost();
         void    setActions();

@@ -12,7 +12,7 @@ void MDP::solve()
     {
         // Set new values to old values
         d_valueA = d_valueB;
-        
+
         // Compute the expected cost for every state and optimal production
         exp_cost();
 

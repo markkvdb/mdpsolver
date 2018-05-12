@@ -13,9 +13,10 @@ num_t MDP::expected_cost(size_t state1, size_t state2)
     num_t bestVal = numeric_limits<num_t>::max();
 
     // Select minimum costs for all possible production states
-    for (size_t pdx1 = (d_pi - d_nRates - 1); pdx1 != d_nRates; ++pdx1)
+    for (size_t pdx1 = (d_pi - d_nRates); pdx1 != d_nRates; ++pdx1)
     {
-        tmpVal = expected_costs(state1, state2, pdx1, d_pi - pdx1);
+        cout << state1 << '-' << state2 << ' ' << pdx1 << '-' << d_pi - pdx1 - 1 << endl;
+        tmpVal = expected_costs(state1, state2, pdx1, d_pi - pdx1 - 1);
         if (tmpVal < bestVal)
             bestVal = tmpVal;
     }

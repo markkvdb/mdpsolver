@@ -5,7 +5,7 @@ Init::Init()
 {}
 
 Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
-           size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha)
+           size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, size_t alpha, num_t eps)
 :
     d_ccm(ccm),
     d_cpm(cpm),
@@ -18,5 +18,6 @@ Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
     d_var(var),
     d_dT(dT),
     d_beta(beta),
-    d_alpha(alpha)
+    d_alpha(alpha),
+    d_eps(eps)
 {}
