@@ -17,7 +17,7 @@ class Init
     num_t   d_dL;
 
     // Action space
-    num_t               d_pi;
+    size_t              d_pi;
     size_t              d_nRates;
     std::vector<num_t>  d_prodRates;
 
@@ -40,6 +40,8 @@ class Init
     
     public:
         Init();
+        Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
+             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha);
 
         void    initialise();
 
