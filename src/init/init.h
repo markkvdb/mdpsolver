@@ -58,10 +58,10 @@ class Init
              size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, size_t alpha, num_t eps,
              num_t minSumJump);
 
-        void    initialise();
         void    printTransitionMatrix() const;
 
     private:
+        void    initialise();
         num_t   g(double prodRate) const;
         void    setTransitionGamma();
         void    setCost();
