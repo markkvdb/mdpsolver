@@ -37,6 +37,7 @@ opt_maintenance_plot2 = ggplot(optimalPolicy, aes(xmin=state1, xmax=state1_max,
   labs(x="State unit 1", y="State unit 2")
 
 print(opt_maintenance_plot2)
+ggsave("output/optimal_maintenance_plot.pdf", opt_maintenance_plot2, width=9, height=7)
 
 # Plot optimal production with rectangles
 opt_production_plot2 = ggplot(optimalPolicy, aes(xmin=state1, xmax=state1_max,
@@ -48,5 +49,6 @@ opt_production_plot2 = ggplot(optimalPolicy, aes(xmin=state1, xmax=state1_max,
   labs(x="State unit 1", y="State unit 2")
 
 print(opt_production_plot2)
+ggsave("output/optimal_production_plot.pdf", opt_production_plot2, width=9, height=7)
 
 # Combine both plots
