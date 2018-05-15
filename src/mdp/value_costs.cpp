@@ -5,10 +5,12 @@
  * Action 0 is 'DN' and 1 is 'M'.
  */
 
-num_t MDP::value_costs(size_t state1, size_t state2) const
+num_t MDP::value_costs(size_t state1, size_t state2, size_t idxState)
 {
     size_t s1, s2;
     num_t bestVal = numeric_limits<num_t>::max();
+    size_t bestMain1 = numeric_limits<num_t>::max();
+    size_t bestMain2 = numeric_limits<num_t>::max();
 
     for (size_t adx1 = 0; adx1 != 2; ++adx1)
     {
@@ -22,9 +24,15 @@ num_t MDP::value_costs(size_t state1, size_t state2) const
 
             num_t tmpVal = direct_cost(state1, state2, adx1, adx2) + d_expectedCost[hash(s1, s2)];
             if (tmpVal < bestVal)
+            {
                 bestVal = tmpVal;
+                bestMain1 = adx1;
+                bestMain2 = adx2;
+            }
         }
     }
 
+    d_optimalMaintenance[idxState][0] = bestMain1;
+    d_optimalMaintenance[idxState][1] = bestMain2;
     return bestVal;    
 }

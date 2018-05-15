@@ -2,6 +2,7 @@
 #define INCLUDED_MDP_
 
 #include <vector>
+#include <array>
 #include <tuple>
 
 #include "../init/init.h"
@@ -14,6 +15,10 @@ class MDP
 
     // Expected costs for every production rate
     std::vector<num_t> d_expectedCost;
+
+    // Save optimal actions
+    std::vector<std::array<size_t, 2>> d_optimalMaintenance;
+    std::vector<std::array<size_t, 2>> d_optimalProduction;
 
     // Maintenance costs
     num_t const d_ccm;
@@ -41,18 +46,19 @@ class MDP
         MDP(Init const &init);
 
         void solve();
+        void write_solution() const;
         void print_all_info();
 
     private:
         void    value_cost();
-        num_t   value_costs(size_t state1, size_t state2) const;
+        num_t   value_costs(size_t state1, size_t state2, size_t idxState);
         bool    feasible_maintenance(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2) const;
         bool    feasible_production(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const;
         num_t   direct_cost(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2) const;
         num_t   direct_costs(size_t state, size_t mainAction) const;
         bool    converged() const;
         void    exp_cost();
-        num_t   expected_cost(size_t state1, size_t state2) const;
+        num_t   expected_cost(size_t state1, size_t state2, size_t idxState);
         num_t   expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const;
 
         size_t                      hash(size_t state1, size_t state2) const;

@@ -281,3 +281,5 @@ TSWLatexianTemp*
 .vscode/*
 mdpsolver.dSYM
 .mdpsolver
+.Rproj.user
+output
