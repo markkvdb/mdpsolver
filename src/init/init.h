@@ -2,6 +2,7 @@
 #define INCLUDED_INIT_
 
 #include <vector>
+#include <math.h>
 
 class MDP;
 
@@ -24,6 +25,7 @@ class Init
     size_t              d_pi;
     size_t              d_nRates;
     std::vector<num_t>  d_prodRates;
+    size_t              d_minWorkingUnits;
 
     // Probabilities
     num_t d_mu;
@@ -66,6 +68,12 @@ class Init
         void    setActions();
         void    setActions(num_t prodRates);
         void    setMaximumJump();
+        void    setMinWorkingUnits();
 };
+
+inline void Init::setMinWorkingUnits()
+{
+    d_minWorkingUnits = ceil(d_pi / (d_nRates-1));
+}
 
 #endif 

@@ -18,8 +18,8 @@ Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
     d_mu(mu),
     d_var(var),
     d_dT(dT),
+    d_minSumJump(minSumJump),
     d_beta(beta),
     d_alpha(alpha),
-    d_eps(eps),
-    d_minSumJump(minSumJump)
+    d_eps(eps)
 {}

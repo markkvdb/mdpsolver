@@ -2,6 +2,7 @@
 #define INCLUDED_MDP_
 
 #include <vector>
+#include <tuple>
 
 #include "../init/init.h"
 
@@ -23,6 +24,7 @@ class MDP
     size_t const d_nStates;
     size_t const d_pi;
     size_t const d_nRates;
+    size_t const d_minWorkingUnits;
 
     // Jump probabilities
     std::vector<std::vector<num_t>> const d_prop1;
@@ -44,19 +46,28 @@ class MDP
     private:
         void    value_cost();
         num_t   value_costs(size_t state1, size_t state2);
+        bool    feasible_maintenance(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2);
+        bool    feasible_production(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2);
         num_t   direct_cost(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2);
         num_t   direct_costs(size_t state, size_t mainAction);
-        bool    converged();
+        bool    converged() const;
         void    exp_cost();
         num_t   expected_cost(size_t state1, size_t state2);
         num_t   expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2);
 
-        size_t hash(size_t state1, size_t state2);
+        size_t                      hash(size_t state1, size_t state2) const;
+        std::tuple<size_t, size_t>  inv_hash(size_t states) const;
 };
 
-inline size_t MDP::hash(size_t state1, size_t state2) 
+inline size_t MDP::hash(size_t state1, size_t state2) const
 {
     return state1 * d_nStates + state2;
+}
+
+inline std::tuple<size_t, size_t> MDP::inv_hash(size_t states) const
+{
+    size_t leftOver = states % d_nStates;
+    return std::make_tuple((states - leftOver) / d_nStates, leftOver);
 }
 
 #endif

@@ -9,4 +9,5 @@ void Init::initialise()
     setCost();
     setTransitionGamma();
     setMaximumJump();
+    setMinWorkingUnits();
 }

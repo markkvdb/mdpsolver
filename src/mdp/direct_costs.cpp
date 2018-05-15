@@ -10,7 +10,7 @@ num_t MDP::direct_costs(size_t state, size_t mainAction)
     if (mainAction == 0)
         return 0;
 
-    if (state == d_nRates)
+    if (state == (d_nRates - 1))
         return d_ccm;
     else
         return d_cpm;

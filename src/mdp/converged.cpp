@@ -1,11 +1,8 @@
 #include "mdp.ih"
 
-bool MDP::converged()
+bool MDP::converged() const
 {
-    num_t span = bs::span(d_valueB, d_valueA);
-
-    if (span < d_eps)
-        return true;
+    num_t const span = bs::span(d_valueB, d_valueA);
     
-    return false;
+    return (span < d_eps);
 }

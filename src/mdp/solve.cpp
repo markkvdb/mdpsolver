@@ -19,5 +19,5 @@ void MDP::solve()
         // Obtain new value 
         value_cost();
         
-    } while(converged());
+    } while(not converged());
 }

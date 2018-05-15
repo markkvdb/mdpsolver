@@ -12,7 +12,7 @@ namespace bs
         vector<double> seq(size, 0);
 
         seq[0] = begin;
-        for (size_t idx = 1; idx != (size-1); ++idx)
+        for (int idx = 1; idx != (size-1); ++idx)
             seq[idx] = begin + idx * ((end - begin) / size);
         seq[size-1] = end;
         
@@ -37,7 +37,7 @@ namespace bs
         
         auto result = minmax_element(diff.begin(), diff.end());
 
-        return result.second - result.first;
+        return *result.second - *result.first;
     }
 
     /*
