@@ -8,7 +8,7 @@ CCC = g++-8
 # Compiler options 
 # ---------------------------------------------------------------------
 
-CCOPT = -O -std=c++2a -Wall
+CCOPT = -O -std=c++2a -Wall -flto -pipe
 
 # ---------------------------------------------------------------------
 # Link options and libraries
@@ -23,6 +23,7 @@ INCDIRS =
 TARGET = mdpsolver
 
 all: $(TARGET)
+	echo $(SRC)
 
 CCFLAGS = $(CCOPT)
 

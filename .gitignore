@@ -279,7 +279,5 @@ TSWLatexianTemp*
 
 # VS Code garbage
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+mdpsolver.dSYM
+.mdpsolver
