@@ -33,6 +33,11 @@ class Init
     std::vector<std::vector<num_t>> d_prop1;
     std::vector<std::vector<num_t>> d_prop2;
 
+    // Maximum jumps
+    num_t               d_minSumJump;
+    std::vector<size_t> d_maxJumps;
+    
+
     num_t   d_beta;
     size_t  d_alpha;
     
@@ -48,7 +53,8 @@ class Init
     public:
         Init();
         Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
-             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, size_t alpha, num_t eps);
+             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, size_t alpha, num_t eps,
+             num_t minSumJump);
 
         void    initialise();
         void    printTransitionMatrix() const;
@@ -59,6 +65,7 @@ class Init
         void    setCost();
         void    setActions();
         void    setActions(num_t prodRates);
+        void    setMaximumJump();
 };
 
 #endif 

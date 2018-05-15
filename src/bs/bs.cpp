@@ -39,4 +39,24 @@ namespace bs
 
         return result.second - result.first;
     }
+
+    /*
+     * Return the first element such that the sum of all
+     * elements till this element is at least 'value'.
+     * 
+     * Return size of 'data' vector if sum is smaller than 'minSum'.
+     */
+    size_t min_sum(std::vector<double> const &data, double const minSum)
+    {
+        size_t pos = data.size();
+        double sum = 0;
+        for (size_t idx = 0; idx != data.size(); ++idx) 
+        {
+            sum += data[idx];
+            if (sum >= minSum)
+                pos = idx;
+        }
+
+        return pos;
+    }
 }

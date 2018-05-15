@@ -8,4 +8,5 @@ void Init::initialise()
     setActions();
     setCost();
     setTransitionGamma();
+    setMaximumJump();
 }

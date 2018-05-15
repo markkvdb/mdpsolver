@@ -13,7 +13,8 @@
 namespace bs
 {
     std::vector<double> seq_length(double const begin, double const end, int const size);
-    double span(std::vector<double> const &first, std::vector<double> const &second);
+    double              span(std::vector<double> const &first, std::vector<double> const &second);
+    size_t              min_sum(std::vector<double> const &data, double const minSum);
 }
 
 #endif

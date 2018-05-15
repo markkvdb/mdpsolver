@@ -5,7 +5,7 @@
 
 int main(int argc, char**argv) 
 {
-    Init init{1, 0.3, 10, 10, 0.1, 6, 5, 1, 2, 0.1, 0.0, 1, 0.0005};
+    Init init{1, 0.3, 10, 10, 0.1, 6, 5, 1, 2, 0.1, 0.0, 1, 0.0005, 0.99};
     init.initialise();
     init.printTransitionMatrix();
 
