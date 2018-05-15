@@ -5,7 +5,7 @@
  * enough working units under the maintenance policy
  */
 
-bool MDP::feasible_maintenance(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2)
+bool MDP::feasible_maintenance(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2) const
 {
     // Set this to number of units
     size_t nWorkingUnits = 2;

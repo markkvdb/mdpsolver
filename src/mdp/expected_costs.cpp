@@ -7,7 +7,7 @@
  *  TODO check if I did the looping right
  */
 
-num_t MDP::expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2)
+num_t MDP::expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const
 {
     num_t costs = 0;
     size_t idxState = 0;

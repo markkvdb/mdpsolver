@@ -45,15 +45,15 @@ class MDP
 
     private:
         void    value_cost();
-        num_t   value_costs(size_t state1, size_t state2);
-        bool    feasible_maintenance(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2);
-        bool    feasible_production(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2);
-        num_t   direct_cost(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2);
-        num_t   direct_costs(size_t state, size_t mainAction);
+        num_t   value_costs(size_t state1, size_t state2) const;
+        bool    feasible_maintenance(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2) const;
+        bool    feasible_production(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const;
+        num_t   direct_cost(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2) const;
+        num_t   direct_costs(size_t state, size_t mainAction) const;
         bool    converged() const;
         void    exp_cost();
-        num_t   expected_cost(size_t state1, size_t state2);
-        num_t   expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2);
+        num_t   expected_cost(size_t state1, size_t state2) const;
+        num_t   expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const;
 
         size_t                      hash(size_t state1, size_t state2) const;
         std::tuple<size_t, size_t>  inv_hash(size_t states) const;
