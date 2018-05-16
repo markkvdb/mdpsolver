@@ -5,7 +5,7 @@ Init::Init()
 {}
 
 Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
-           size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, size_t alpha, num_t eps,
+           size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
            num_t minSumJump)
 :
     d_ccm(ccm),

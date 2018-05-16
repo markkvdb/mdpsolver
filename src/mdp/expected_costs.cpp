@@ -21,18 +21,18 @@ num_t MDP::expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t
         num_t prop1 = d_prop1[prodRate1][sdx1];
         for (size_t sdx2 = 0; sdx2 != maxJump2; ++sdx2)
         {
-            costs += prop1 * d_prop1[prodRate2][sdx2] * d_valueA[idxState++];
+            costs += prop1 * d_prop1[prodRate2][sdx2] * d_valueA[hash(sdx1, sdx2)];
         }
-        costs += prop1 * d_prop2[prodRate2][state2] * d_valueA[idxState++];
+        costs += prop1 * d_prop2[prodRate2][state2] * d_valueA[hash(sdx1, d_nStates-1)];
     }
 
     // Add costs when unit 1 goes to failed state;
     num_t prop1 = d_prop2[prodRate1][state1];
     for (size_t sdx2 = 0; sdx2 != maxJump2; ++sdx2)
     {
-        costs += prop1 * d_prop1[prodRate2][sdx2] * d_valueA[idxState++];
+        costs += prop1 * d_prop1[prodRate2][sdx2] * d_valueA[hash(d_nStates-1, sdx2)];
     }
-    costs += prop1 * d_prop2[prodRate2][state2] * d_valueA[idxState++];
+    costs += prop1 * d_prop2[prodRate2][state2] * d_valueA[hash(d_nStates-1, d_nStates-1)];
 
     return costs;
 }

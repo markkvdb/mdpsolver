@@ -7,17 +7,16 @@
 
 num_t MDP::value_costs(size_t state1, size_t state2, size_t idxState)
 {
-    size_t s1, s2;
     num_t bestVal = numeric_limits<num_t>::max();
-    size_t bestMain1 = numeric_limits<num_t>::max();
-    size_t bestMain2 = numeric_limits<num_t>::max();
+    size_t bestMain1 = numeric_limits<size_t>::max();
+    size_t bestMain2 = numeric_limits<size_t>::max();
 
     for (size_t adx1 = 0; adx1 != 2; ++adx1)
     {
-        s1 = (adx1 == 0) ? state1 : 0;
+        size_t s1 = (adx1 == 0) ? state1 : 0;
         for (size_t adx2 = 0; adx2 != 2; ++adx2)
         {
-            s2 = (adx2 == 0) ? state2 : 0;
+            size_t s2 = (adx2 == 0) ? state2 : 0;
 
             if (not feasible_maintenance(state1, state2, adx1, adx2))
                 continue;

@@ -40,8 +40,8 @@ class Init
     std::vector<size_t> d_maxJumps;
     
 
-    num_t   d_beta;
-    size_t  d_alpha;
+    num_t d_beta;
+    num_t d_alpha;
     
     std::vector<num_t> d_detRates;
 
@@ -55,7 +55,7 @@ class Init
     public:
         Init();
         Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
-             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, size_t alpha, num_t eps,
+             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
              num_t minSumJump);
 
         void    printTransitionMatrix() const;
