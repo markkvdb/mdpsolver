@@ -42,7 +42,7 @@ ggsave("output/optimal_maintenance_plot.pdf", opt_maintenance_plot2, width=9, he
 # Plot optimal production with rectangles
 opt_production_plot2 = ggplot(optimalPolicy, aes(xmin=state1, xmax=state1_max,
                                                   ymin=state2, ymax=state2_max,
-                                                  fill=`Production action`)) +
+                                                  fill=production1)) +
   geom_rect() + theme_bw() + theme(panel.grid = element_blank(), panel.border = element_blank()) +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0)) +

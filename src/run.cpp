@@ -10,16 +10,16 @@ try
 {
     Init init{1,        // ccm
               0.2,      // cpm
-              0.5,       // C
-              50,       // nStates
-              0.1,      // dL
-              61,       // pi
-              50,       // nRates
+              0.5,      // C
+              20,       // nStates
+              1,        // dL
+              25,       // pi
+              20,       // nRates
               1,        // mu
               2,        // var
-              0.1,      // dT
+              1,        // dT
               0.1,      // beta
-              1.5,        // alpha
+              1.5,      // alpha
               0.000005, // eps
               0.99      // minProb
              };

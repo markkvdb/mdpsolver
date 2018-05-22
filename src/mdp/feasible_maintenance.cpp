@@ -10,9 +10,9 @@ bool MDP::feasible_maintenance(size_t state1, size_t state2, size_t mainAction1,
     // Set this to number of units
     size_t nWorkingUnits = 2;
     
-    if ((state1 == (d_nStates - 1)) && mainAction1 == 0)
+    if ((state1 == (d_nStates - 1)) and mainAction1 == 0)
         --nWorkingUnits;
-    if ((state2 == (d_nStates - 1)) && mainAction2 == 0)
+    if ((state2 == (d_nStates - 1)) and mainAction2 == 0)
         --nWorkingUnits;
     
     return (nWorkingUnits >= d_minWorkingUnits);

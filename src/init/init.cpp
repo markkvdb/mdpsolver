@@ -23,5 +23,8 @@ Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
     d_alpha(alpha),
     d_eps(eps)
 {
+    if (d_dL != 1)
+        throw("dL should be equal to 1");
+    
     initialise();
 }

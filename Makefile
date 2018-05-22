@@ -23,7 +23,6 @@ INCDIRS =
 TARGET = mdpsolver
 
 all: $(TARGET)
-	echo $(SRC)
 
 CCFLAGS = $(CCOPT)
 
