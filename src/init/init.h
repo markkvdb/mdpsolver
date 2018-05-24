@@ -73,7 +73,7 @@ class Init
 
 inline void Init::setMinWorkingUnits()
 {
-    d_minWorkingUnits = ceil(d_pi / (d_nRates-1));
+    d_minWorkingUnits = ceil(static_cast<num_t>(d_pi) / (static_cast<num_t>(d_nRates)-1));
 }
 
 #endif 

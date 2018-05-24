@@ -25,19 +25,22 @@ void MDP::print_all_info()
     cout << setw(8) << "Prod1";
     cout << setw(8) << "Prod2" << endl;
 
+    size_t idxState = 0;
+
     for (size_t sdx1 = 0; sdx1 != d_nStates; ++sdx1) 
     {
         for(size_t sdx2 = 0; sdx2 != d_nStates; ++sdx2) 
         {
             cout << setw(8) << to_string(sdx1);
             cout << setw(8) << to_string(sdx2);
-            cout << setw(8) << d_valueA[hash(sdx1, sdx2)]; 
-            cout << setw(8) << d_valueB[hash(sdx1, sdx2)]; 
-            cout << setw(8) << d_expectedCost[hash(sdx1, sdx2)];
-            cout << setw(8) << d_optimalMaintenance[hash(sdx1, sdx2)][0];
-            cout << setw(8) << d_optimalMaintenance[hash(sdx1, sdx2)][1];
-            cout << setw(8) << d_optimalProduction[hash(sdx1, sdx2)][0];
-            cout << setw(8) << d_optimalProduction[hash(sdx1, sdx2)][1] << endl;
+            cout << setw(8) << d_valueA[idxState]; 
+            cout << setw(8) << d_valueB[idxState]; 
+            cout << setw(8) << d_expectedCost[idxState];
+            cout << setw(8) << d_optimalMaintenance[idxState][0];
+            cout << setw(8) << d_optimalMaintenance[idxState][1];
+            cout << setw(8) << d_optimalProduction[idxState][0];
+            cout << setw(8) << d_optimalProduction[idxState][1] << endl;
+            ++idxState;
         }
     }
 }

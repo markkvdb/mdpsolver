@@ -24,7 +24,7 @@ void MDP::write_solution() const
         {
             outputFile << sdx1 << ' ' << sdx2 << ' ';
             outputFile << d_optimalMaintenance[idxState][0] << ' ' << d_optimalMaintenance[idxState][1] << ' ';
-            outputFile << d_optimalProduction[idxState][0] << ' ' << d_optimalProduction[idxState][1] << '\n';
+            outputFile << d_optimalProduction[idxState][0] << ' ' << d_optimalProduction[idxState][1] << endl;
             ++idxState;
         }
     }
