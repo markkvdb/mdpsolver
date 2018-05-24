@@ -49,8 +49,11 @@ class MDP
         MDP(Init const &init);
 
         void solve();
+        void solve2();
         void write_solution() const;
         void print_all_info() const;
+        
+        size_t get_id() const;
 
     private:
         void    value_cost();
@@ -77,6 +80,11 @@ inline std::tuple<size_t, size_t> MDP::inv_hash(size_t states) const
 {
     size_t leftOver = states % d_nStates;
     return std::make_tuple((states - leftOver) / d_nStates, leftOver);
+}
+
+inline size_t MDP::get_id() const
+{
+    return d_id;
 }
 
 #endif

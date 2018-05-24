@@ -4,36 +4,17 @@
 #include "init/init.h"
 #include "mdp/mdp.h"
 
+#include "solve_experiments.h"
+
 using namespace std;
+
 
 int main(int argc, char**argv) 
 try 
 {
     if (argc == 2)
     {
-        // Read experiment file
-        string line;
-        ifstream experimentsFile("data/experiment_input");
-        size_t iter = 0;
-
-        // Loop over all experiments
-        if (experimentsFile.is_open())
-        {
-            while (getline(experimentsFile, line))
-            {
-                cout << "Solve experiment " << iter << endl;
-                Init init{line};
-                init.printAllInfo();
-                MDP mdp{init};
-                mdp.solve();
-                mdp.write_solution();
-                ++iter;
-            }
-            experimentsFile.close();
-        } else 
-        {
-            throw("Could not open file");
-        }
+        solve_from_file();
     } else
     {
         Init init{1,        // ccm
@@ -49,7 +30,7 @@ try
                   0.1,      // beta
                   1.5,      // alpha
                   0.000005, // eps
-                  0.99,     // minProb
+                  0.9999,   // minProb
                   2         // nUnits
                  };
 
@@ -62,5 +43,5 @@ try
 }
 catch (string const &e) 
 {
-    cout << e << '\n';
+    cout << e << endl;
 }

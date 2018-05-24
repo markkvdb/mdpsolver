@@ -10,6 +10,7 @@
 
 void MDP::write_solution() const
 {
+    // Save the optimal policy
     ofstream outputFile;
     outputFile.open("output/optimal_policy" + to_string(d_id) + ".csv");
 
@@ -28,5 +29,17 @@ void MDP::write_solution() const
             ++idxState;
         }
     }
+    outputFile.close();
+
+    // Save optimal values
+    outputFile.open("output/optimal_values" + to_string(d_id) + ".csv");
+    for (num_t const val: d_valueB)
+        outputFile << val << ' ';
+    
+    outputFile.close();
+
+    // Save approximation gain
+    outputFile.open("output/approximate_gain" + to_string(d_id));
+    outputFile << bs::approximate_gain(d_valueB, d_valueA) << endl;
     outputFile.close();
 }
