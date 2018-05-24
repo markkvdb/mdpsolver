@@ -12,6 +12,9 @@ class Init
 {
     friend class MDP;
 
+    // Number of units
+    size_t d_nUnits;
+
     // Maintenance costs
     num_t d_ccm;
     num_t d_cpm;
@@ -51,12 +54,11 @@ class Init
     // Value iteration parameter
     num_t d_eps;
     
-    
     public:
         Init();
         Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
              size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
-             num_t minSumJump);
+             num_t minSumJump, size_t nUnits);
 
         void    printTransitionMatrix() const;
 

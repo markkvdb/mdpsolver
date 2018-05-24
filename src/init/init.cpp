@@ -6,7 +6,7 @@ Init::Init()
 
 Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
            size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
-           num_t minSumJump)
+           num_t minSumJump, size_t nUnits)
 :
     d_ccm(ccm),
     d_cpm(cpm),
@@ -21,10 +21,14 @@ Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
     d_minSumJump(minSumJump),
     d_beta(beta),
     d_alpha(alpha),
-    d_eps(eps)
+    d_eps(eps),
+    d_nUnites(nUnits)
 {
     if (d_dL != 1)
         throw("dL should be equal to 1");
+
+    if (nUnits > 4 or nUnits < 2)
+        throw("Number of units should be between 2 and 4")
     
     initialise();
 }
