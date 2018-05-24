@@ -2,9 +2,9 @@
 
 #include <boost/algorithm/string.hpp>
 
-Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
-           size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
-           num_t minSumJump, size_t nUnits)
+Init::Init(num_t ccm, num_t cpm, num_t C, int nStates, num_t dL, int pi,
+           int nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
+           num_t minSumJump, int nUnits)
 :
     d_nUnits(nUnits),
     d_ccm(ccm),
@@ -26,7 +26,7 @@ Init::Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
         throw("dL should be equal to 1");
 
     if (nUnits > 4 or nUnits < 2)
-        throw("Number of units should be between 2 and 4");
+        throw("Number of units should be either 2 or 3");
     
     initialise();
 }
@@ -64,8 +64,8 @@ Init::Init(string const &line)
     if (d_dL != 1)
         throw("dL should be equal to 1");
 
-    if (d_nUnits > 4 or d_nUnits < 2)
-        throw("Number of units should be between 2 and 4");
+    if (d_nUnits > 3 or d_nUnits < 2)
+        throw("Number of units should be either 2 or 3");
 
     // Initialise the rest
     initialise();

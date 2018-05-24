@@ -20,8 +20,10 @@ class MDP
     std::vector<num_t> d_expectedCost;
 
     // Save optimal actions
-    std::vector<std::array<size_t, 2>> d_optimalMaintenance;
-    std::vector<std::array<size_t, 2>> d_optimalProduction;
+    std::vector<std::array<int, 2>> d_optimalMaintenance;
+    std::vector<std::array<int, 2>> d_optimalProduction;
+    // std::vector<std::array<int, 3>> d_optimalMaintenance;
+    // std::vector<std::array<int, 3>> d_optimalProduction;
 
     // Maintenance costs
     num_t const d_ccm;
@@ -29,18 +31,18 @@ class MDP
     num_t const d_C;
 
     // State and action space
-    size_t const d_nStates;
-    size_t const d_pi;
-    size_t const d_nRates;
-    size_t const d_minWorkingUnits;
+    int const d_nStates;
+    int const d_pi;
+    int const d_nRates;
+    int const d_minWorkingUnits;
 
     // Jump probabilities
     std::vector<std::vector<num_t>> const d_prop1;
     std::vector<std::vector<num_t>> const d_prop2;
 
     // Jump heuristic
-    bool                        d_jumpHeuristic;         
-    std::vector<size_t> const   d_maxJumps;
+    bool                     d_jumpHeuristic;         
+    std::vector<int> const   d_maxJumps;
 
     // Costs
     std::vector<num_t> const d_terminalCosts;
@@ -59,30 +61,44 @@ class MDP
         size_t get_id() const;
 
     private:
+        // Generic functions
         void    value_cost();
-        num_t   value_costs(size_t state1, size_t state2, size_t idxState);
-        bool    feasible_maintenance(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2) const;
-        bool    feasible_production(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const;
-        num_t   direct_cost(size_t state1, size_t state2, size_t mainAction1, size_t mainAction2) const;
-        num_t   direct_costs(size_t state, size_t mainAction) const;
-        bool    converged() const;
         void    exp_cost();
-        num_t   expected_cost(size_t state1, size_t state2, size_t idxState);
-        num_t   expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const;
+        bool    converged() const;
+        num_t   direct_costs(int state, int mainAction) const;
 
-        inline size_t               hash(size_t state1, size_t state2) const;
-        std::tuple<size_t, size_t>  inv_hash(size_t states) const;
+        // Functions for 2 unit system
+        num_t   value_costs(int state1, int state2, int idxState);
+        num_t   direct_cost(int state1, int state2, int mainAction1, int mainAction2) const;
+        num_t   expected_cost(int state1, int state2, int idxState);
+        num_t   expected_costs(int state1, int state2, int prodRate1, int prodRate2) const;
+        bool    feasible_maintenance(int state1, int state2, int mainAction1, int mainAction2) const;
+        bool    feasible_production(int state1, int state2, int prodRate1, int prodRate2) const;
+        int     hash(int state1, int state2) const;
+
+        // Functions for 3 unit system
+        num_t   value_costs(int state1, int state2, int state3, int idxState);
+        num_t   direct_cost(int state1, int state2, int state3, int mainAction1, 
+                            int mainAction2, int mainAction3) const;
+        num_t   expected_cost(int state1, int state2, int state3, int idxState);
+        num_t   expected_costs(int state1, int state2, int state3, 
+                               int prodRate1, int prodRate2, int prodRate3) const;
+        bool    feasible_maintenance(int state1, int state2, int state3,
+                                     int mainAction1, int mainAction2, int mainAction3) const;
+        bool    feasible_production(int state1, int state2, int state3,
+                                    int prodRate1, int prodRate2, int prodRate3) const;
+        int     hash(int state1, int state2, int state3) const;
+
 };
 
-inline size_t MDP::hash(size_t state1, size_t state2) const
+inline int MDP::hash(int state1, int state2) const
 {
     return state1 * d_nStates + state2;
 }
 
-inline std::tuple<size_t, size_t> MDP::inv_hash(size_t states) const
+inline int MDP::hash(int state1, int state2, int state3) const
 {
-    size_t leftOver = states % d_nStates;
-    return std::make_tuple((states - leftOver) / d_nStates, leftOver);
+    return state1 * d_nStates * d_nStates + state2 * d_nStates + state3;
 }
 
 inline size_t MDP::get_id() const

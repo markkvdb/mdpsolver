@@ -10,19 +10,19 @@ void Init::printTransitionMatrix() const
     throw string("Error: transition matrices are unset (Init::printTransitionMatrix.cc)");
   
   cout << setprecision(3) << fixed;
-  for (size_t adx = 0; adx < d_nRates; ++adx)
+  for (int adx = 0; adx < d_nRates; ++adx)
   {
     auto const &p1 = d_prop1[adx];
     auto const &p2 = d_prop2[adx];
     
     cout << " a = " << adx << endl;
     
-    for (size_t idx = 0; idx < d_nStates; ++idx)
+    for (int idx = 0; idx < d_nStates; ++idx)
         cout << setw(7) << p1[idx];
     
     cout << " - " << accumulate(begin(p1), end(p1), 0.0) << endl;
     
-    for (size_t idx = 0; idx < d_nStates; ++idx)
+    for (int idx = 0; idx < d_nStates; ++idx)
         cout << setw(7) << p2[idx];
     cout << endl << endl;
   }

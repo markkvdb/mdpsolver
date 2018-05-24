@@ -13,7 +13,7 @@ void Init::setActions()
   d_prodRates = bs::seq_length(0.0, 1.0, d_nRates);
   d_detRates  = vector<num_t>(d_nRates, 0);
   
-  for (size_t idx = 0; idx < d_nRates; ++idx)
+  for (int idx = 0; idx < d_nRates; ++idx)
     d_detRates[idx] = g(d_prodRates[idx]); 
 }
 

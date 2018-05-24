@@ -18,10 +18,10 @@ void MDP::write_solution() const
     outputFile << "state1 state2 maintenance1 maintenance2 production1 production2" << endl;
 
     // Loop over all states
-    size_t idxState = 0;
-    for (size_t sdx1 = 0; sdx1 != d_nStates; ++sdx1)
+    int idxState = 0;
+    for (int sdx1 = 0; sdx1 != d_nStates; ++sdx1)
     {
-        for (size_t sdx2 = 0; sdx2 != d_nStates; ++sdx2)
+        for (int sdx2 = 0; sdx2 != d_nStates; ++sdx2)
         {
             outputFile << sdx1 << ' ' << sdx2 << ' ';
             outputFile << d_optimalMaintenance[idxState][0] << ' ' << d_optimalMaintenance[idxState][1] << ' ';

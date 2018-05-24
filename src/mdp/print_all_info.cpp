@@ -25,11 +25,11 @@ void MDP::print_all_info() const
     cout << setw(8) << "Prod1";
     cout << setw(8) << "Prod2" << endl;
 
-    size_t idxState = 0;
+    int idxState = 0;
 
-    for (size_t sdx1 = 0; sdx1 != d_nStates; ++sdx1) 
+    for (int sdx1 = 0; sdx1 != d_nStates; ++sdx1) 
     {
-        for(size_t sdx2 = 0; sdx2 != d_nStates; ++sdx2) 
+        for(int sdx2 = 0; sdx2 != d_nStates; ++sdx2) 
         {
             cout << setw(8) << to_string(sdx1);
             cout << setw(8) << to_string(sdx2);

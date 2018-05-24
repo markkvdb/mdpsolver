@@ -50,9 +50,9 @@ namespace bs
      * 
      * Return size of 'data' vector if sum is smaller than 'minSum'.
      */
-    size_t min_sum(vector<double> const &data, double const minSum)
+    int min_sum(vector<double> const &data, double const minSum)
     {
-        size_t pos = data.size();
+        int pos = -1;
         double sum = 0;
         for (size_t idx = 0; idx != data.size(); ++idx) 
         {

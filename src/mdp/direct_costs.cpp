@@ -5,7 +5,7 @@
  * selecting maintenance action 'mainAction'
  */
 
-num_t MDP::direct_costs(size_t state, size_t mainAction) const
+num_t MDP::direct_costs(int state, int mainAction) const
 {
     if (mainAction == 0)
         return 0;

@@ -14,7 +14,7 @@ class Init
     friend class MDP;
 
     // Number of units
-    size_t d_nUnits;
+    int d_nUnits;
 
     // Maintenance costs
     num_t d_ccm;
@@ -22,14 +22,14 @@ class Init
     num_t d_C;
 
     // State space
-    size_t  d_nStates;
+    int  d_nStates;
     num_t   d_dL;
 
     // Action space
-    size_t              d_pi;
-    size_t              d_nRates;
+    int                 d_pi;
+    int                 d_nRates;
     std::vector<num_t>  d_prodRates;
-    size_t              d_minWorkingUnits;
+    int                 d_minWorkingUnits;
 
     // Probabilities
     num_t d_mu;
@@ -41,7 +41,7 @@ class Init
 
     // Maximum jumps
     num_t               d_minSumJump;
-    std::vector<size_t> d_maxJumps;
+    std::vector<int>    d_maxJumps;
     
     num_t d_beta;
     num_t d_alpha;
@@ -56,9 +56,9 @@ class Init
     
     public:
         Init() = delete;
-        Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
-             size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
-             num_t minSumJump, size_t nUnits);
+        Init(num_t ccm, num_t cpm, num_t C, int nStates, num_t dL, int pi,
+             int nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
+             num_t minSumJump, int nUnits);
         Init(std::string const &line);
 
         void    printTransitionMatrix() const;
