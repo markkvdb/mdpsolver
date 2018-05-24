@@ -1,7 +1,10 @@
 #include "mdp.ih"
 
+size_t MDP::s_id = 0;
+
 MDP::MDP(Init const &init)
 :
+    d_id(s_id),
     d_valueA(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
     d_valueB(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
     d_expectedCost(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
@@ -20,4 +23,6 @@ MDP::MDP(Init const &init)
 {
     if (d_pi < d_nRates || d_pi > (2 * d_nRates))
         throw string("Pi should be between nRates and 2*nRates");
+
+    ++s_id;
 }

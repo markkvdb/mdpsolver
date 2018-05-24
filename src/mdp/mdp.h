@@ -9,6 +9,9 @@
 
 class MDP
 {
+    static size_t   s_id;
+    size_t const    d_id;
+    
     // Values
     std::vector<num_t> d_valueA;
     std::vector<num_t> d_valueB;
@@ -47,7 +50,7 @@ class MDP
 
         void solve();
         void write_solution() const;
-        void print_all_info();
+        void print_all_info() const;
 
     private:
         void    value_cost();

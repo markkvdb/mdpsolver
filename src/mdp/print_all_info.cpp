@@ -1,6 +1,6 @@
 #include "mdp.ih"
 
-void MDP::print_all_info()
+void MDP::print_all_info() const
 {
     cout << setprecision(5) << fixed;
 

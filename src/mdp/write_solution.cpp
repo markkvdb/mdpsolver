@@ -11,7 +11,7 @@
 void MDP::write_solution() const
 {
     ofstream outputFile;
-    outputFile.open("output/optimal_policy.csv");
+    outputFile.open("output/optimal_policy" + to_string(d_id) + ".csv");
 
     // Define header of the file (space separated)
     outputFile << "state1 state2 maintenance1 maintenance2 production1 production2" << endl;

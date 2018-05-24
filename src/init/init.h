@@ -2,6 +2,7 @@
 #define INCLUDED_INIT_
 
 #include <vector>
+#include <string>
 #include <math.h>
 
 class MDP;
@@ -42,7 +43,6 @@ class Init
     num_t               d_minSumJump;
     std::vector<size_t> d_maxJumps;
     
-
     num_t d_beta;
     num_t d_alpha;
     
@@ -55,12 +55,14 @@ class Init
     num_t d_eps;
     
     public:
-        Init();
+        Init() = delete;
         Init(num_t ccm, num_t cpm, num_t C, size_t nStates, num_t dL, size_t pi,
              size_t nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
              num_t minSumJump, size_t nUnits);
+        Init(std::string const &line);
 
         void    printTransitionMatrix() const;
+        void    printAllInfo() const;
 
     private:
         void    initialise();
