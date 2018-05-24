@@ -1,6 +1,7 @@
 #include "mdp.h"
 
 #include "../bs/bs.h"
+#include "../globals.h"
 
 #include <limits>
 #include <iostream>

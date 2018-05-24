@@ -22,7 +22,7 @@ num_t MDP::expected_cost(size_t state1, size_t state2, size_t idxState)
 
         num_t const tmpVal = expected_costs(state1, state2, pdx1, pdx2);
 
-        if (tmpVal < bestVal) 
+        if (tmpVal < bestVal - gg_eps) 
         {
             bestVal = tmpVal;
             bestProd1 = pdx1;

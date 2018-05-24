@@ -22,7 +22,7 @@ num_t MDP::value_costs(size_t state1, size_t state2, size_t idxState)
             size_t s2 = (adx2 == 0) ? state2 : 0;
 
             num_t const tmpVal = direct_cost(state1, state2, adx1, adx2) + d_expectedCost[hash(s1, s2)];
-            if (tmpVal < bestVal)
+            if (tmpVal < bestVal - gg_eps)
             {
                 bestVal = tmpVal;
                 bestMain1 = adx1;

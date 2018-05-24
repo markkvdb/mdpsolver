@@ -2,7 +2,7 @@
 
 size_t MDP::s_id = 0;
 
-MDP::MDP(Init const &init)
+MDP::MDP(Init const &init, bool jumpHeuristic)
 :
     d_id(s_id),
     d_valueA(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
@@ -19,6 +19,9 @@ MDP::MDP(Init const &init)
     d_minWorkingUnits(init.d_minWorkingUnits),
     d_prop1(init.d_prop1),
     d_prop2(init.d_prop2),
+    d_jumpHeuristic(jumpHeuristic),
+    d_maxJumps(init.d_maxJumps),
+    d_terminalCosts(init.d_terminalCosts),
     d_eps(init.d_eps)
 {
     if (d_pi < d_nRates || d_pi > (2 * d_nRates))

@@ -38,6 +38,10 @@ class MDP
     std::vector<std::vector<num_t>> const d_prop1;
     std::vector<std::vector<num_t>> const d_prop2;
 
+    // Jump heuristic
+    bool                        d_jumpHeuristic;         
+    std::vector<size_t> const   d_maxJumps;
+
     // Costs
     std::vector<num_t> const d_terminalCosts;
 
@@ -46,10 +50,9 @@ class MDP
 
     public:
         MDP() = delete;
-        MDP(Init const &init);
+        MDP(Init const &init, bool jumpHeuristic = false);
 
         void solve();
-        void solve2();
         void write_solution() const;
         void print_all_info() const;
         
@@ -67,7 +70,7 @@ class MDP
         num_t   expected_cost(size_t state1, size_t state2, size_t idxState);
         num_t   expected_costs(size_t state1, size_t state2, size_t prodRate1, size_t prodRate2) const;
 
-        size_t                      hash(size_t state1, size_t state2) const;
+        inline size_t               hash(size_t state1, size_t state2) const;
         std::tuple<size_t, size_t>  inv_hash(size_t states) const;
 };
 

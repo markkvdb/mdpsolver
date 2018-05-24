@@ -30,13 +30,12 @@ try
                   0.1,      // beta
                   1.5,      // alpha
                   0.000005, // eps
-                  0.9999,   // minProb
+                  0.99,     // minProb
                   2         // nUnits
                  };
 
-
         // Initialise, solve and write mdp
-        MDP mdp{init};
+        MDP mdp{init, false};
         mdp.solve();
         mdp.write_solution();
     }
