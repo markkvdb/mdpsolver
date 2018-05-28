@@ -10,7 +10,7 @@
 void solve_experiment(Init const &init)
 {
     // Initialise MDP
-    MDP mdp{init};
+    MDP mdp{init, false};
     mdp.solve();
     mdp.write_solution();
     std::cout << "Solved experiment " << mdp.get_id() << std::endl;
@@ -41,6 +41,5 @@ void solve_from_file()
     // Solve all experiments in different threads
     for (Init const &init: init_vec)
         solve_experiment(init);
-
 }
 #endif
