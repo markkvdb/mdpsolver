@@ -9,10 +9,10 @@ grid_size = 10
 base_experiment = tibble(ccm = 1.0,
                          cpm = 0.2,
                          C = 0.5,
-                         nStates = 50,
+                         nStates = 30,
                          dL = 1.0,
-                         pi = 60,
-                         nRates = 50,
+                         pi = 40,
+                         nRates = 30,
                          mu = 1.0,
                          var = 2.0,
                          dT = 1.0,
@@ -35,9 +35,14 @@ create_experiments = function(variableName, values) {
 }
 
 # Variance experiments
-var_options = seq(0.1, 5, length.out = grid_size)
+var_options = seq(0.5, 5, length.out=grid_size)
 experiments = experiments %>%
   bind_rows(create_experiments("var", var_options))
+
+# Fixed cost effect
+fixed_cost_options = seq(0, 3, length.out=grid_size)
+experiments = experiments %>%
+  bind_rows(create_experiments("C", fixed_cost_options))
 
 
 #### Output the experiments table ####
