@@ -1,79 +1,46 @@
 #include "mdp.ih"
 
 /*
- * Expected cost using production heuristic
+ *  Calculate the expected cost for a given state and action.
+ *  Loop over all possible jumps to states
+ * HEURISTIC
  */
 
-num_t MDP::expected_cost_heuristic1(int state1, int state2, int idxState)
+num_t MDP::expected_costs_heuristic(int state1, int state2, int prodRate1, int prodRate2) const
 {
-    num_t bestVal = numeric_limits<num_t>::max();
-    int bestProd1 = -1;
-    int bestProd2 = -1;
+    num_t costs = 0;
 
-    // Check if we should do one working unit
-    if (d_pi <= d_nRates)
+    // Check if we do all jumps or selection.
+    int maxJump1 = d_nStates-state1-1;
+    int maxJump2 = d_nStates-state2-1;
+
+    if (d_jumpHeuristic) 
     {
-        bestVal = expected_costs(state1, state2, d_pi, 0);
-        bestProd1 = d_pi;
-        bestProd2 = 0;
+        maxJump1 = min(maxJump1, d_maxJumps[prodRate1]);
+        maxJump2 = min(maxJump2, d_maxJumps[prodRate2]);
+    } 
 
-        num_t const tmpVal2 = expected_costs(state1, state2, 0, d_pi);
+    // Loop over all jump probabilities from 'state1' to 'd_nStates' and obtain costs.
+    int idxState = hash(state1, 0);
+    for (int sdx1 = 0; sdx1 != maxJump1; ++sdx1) 
+    {
+        num_t prop1 = d_prop1[prodRate1][sdx1];
+        idxState += state2;
 
-        if (tmpVal2 < bestVal)
-        {
-            bestVal = tmpVal2;
-            bestProd1 = 0;
-            bestProd2 = d_pi;
-        }
+        for (int sdx2 = 0; sdx2 != maxJump2; ++sdx2)
+            costs += prop1 * d_prop1[prodRate2][sdx2] * d_valueAHeuristic[idxState++];
+        costs += prop1 * d_prop2[prodRate2][state2] * d_valueAHeuristic[idxState++];
     }
 
-    // Share load
-    int pdx1 = d_pi / 2;
-    int pdx2 = d_pi - pdx1;
-    num_t tmpVal3 = expected_costs(state1, state2, pdx1, pdx2);
+    // Add costs when unit 1 goes to failed state;
+    num_t prop1 = d_prop2[prodRate1][state1];
+    idxState += state2;
 
-    if (tmpVal3 < bestVal)
+    for (int sdx2 = 0; sdx2 != maxJump2; ++sdx2)
     {
-        bestVal = tmpVal3;
-        bestProd1 = pdx1;
-        bestProd2 = pdx2;
+        costs += prop1 * d_prop1[prodRate2][sdx2] * d_valueAHeuristic[idxState++];
     }
+    costs += prop1 * d_prop2[prodRate2][state2] * d_valueAHeuristic[idxState++];
 
-    d_optimalProductionHeuristic[idxState][0] = bestProd1;
-    d_optimalProductionHeuristic[idxState][1] = bestProd2;
-    
-    return bestVal;
-}
-
-/*
- * Expected cost using production heuristic
- */
-
-num_t MDP::expected_cost_heuristic2(int state1, int state2, int idxState)
-{
-    num_t bestVal = numeric_limits<num_t>::max();
-    int bestProd1 = -1;
-    int bestProd2 = -1;
-
-    // Select minimum costs for all possible production states
-    for (int pdx1 = (d_pi - d_nRates + 1); pdx1 != d_nRates; ++pdx1)
-    {
-        int pdx2 = d_pi - pdx1;
-        if (not feasible_production(state1, state2, pdx1, pdx2))
-            continue;
-
-        num_t const tmpVal = expected_costs(state1, state2, pdx1, pdx2);
-
-        if (tmpVal < bestVal - gg_eps) 
-        {
-            bestVal = tmpVal;
-            bestProd1 = pdx1;
-            bestProd2 = pdx2;
-        }
-    }
-
-    d_optimalProductionHeuristic[idxState][0] = bestProd1;
-    d_optimalProductionHeuristic[idxState][1] = bestProd2;
-    
-    return bestVal;
+    return costs;
 }

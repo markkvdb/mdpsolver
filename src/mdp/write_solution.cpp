@@ -44,7 +44,7 @@ void MDP::write_solution()
     outputFile.close();
 
     // Obtain heuristic value
-    num_t heuristicCost = cost_heuristic(false, true);
+    num_t heuristicCost = cost_heuristic(true, true);
     print_policy(d_optimalMaintenanceHeuristic);
     print_policy(d_optimalProductionHeuristic);
     cout << heuristicCost << endl;

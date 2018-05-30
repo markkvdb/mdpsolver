@@ -85,6 +85,7 @@ class MDP
                                std::vector<std::array<int, 2> > productionPolicy,
                                int simTime) const;
         void    set_maintenance_matrix(int T_r, int T_o);
+        num_t   expected_costs_heuristic(int state1, int state2, int prodRate1, int prodRate2) const;
         num_t   expected_cost_heuristic1(int state1, int state2, int idxState);
         num_t   expected_cost_heuristic2(int state1, int state2, int idxState);
         void    exp_cost_heuristic1();
