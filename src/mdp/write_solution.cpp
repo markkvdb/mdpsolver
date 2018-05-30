@@ -8,7 +8,7 @@
  * production in every state for every unit.
  */
 
-void MDP::write_solution() const
+void MDP::write_solution()
 {
     // Save the optimal policy
     ofstream outputFile;
@@ -42,4 +42,10 @@ void MDP::write_solution() const
     outputFile.open("output/approximate_gain" + to_string(d_id));
     outputFile << bs::approximate_gain(d_valueB, d_valueA) << endl;
     outputFile.close();
+
+    // Obtain heuristic value
+    num_t heuristicCost = cost_heuristic(false, true);
+    print_policy(d_optimalMaintenanceHeuristic);
+    print_policy(d_optimalProductionHeuristic);
+    cout << heuristicCost << endl;
 }

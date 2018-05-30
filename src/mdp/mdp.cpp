@@ -22,7 +22,12 @@ MDP::MDP(Init const &init, bool jumpHeuristic)
     d_jumpHeuristic(jumpHeuristic),
     d_maxJumps(init.d_maxJumps),
     d_terminalCosts(init.d_terminalCosts),
-    d_eps(init.d_eps)
+    d_eps(init.d_eps),
+    d_optimalMaintenanceHeuristic(vector<array<int, 2>>(init.d_nStates * init.d_nStates, array<int, 2>())),
+    d_optimalProductionHeuristic(vector<array<int, 2>>(init.d_nStates * init.d_nStates, array<int, 2>())),
+    d_valueAHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
+    d_valueBHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
+    d_expectedCostHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0))
 {
     if (d_pi < d_nRates || d_pi > (2 * d_nRates))
         throw string("Pi should be between nRates and 2*nRates");

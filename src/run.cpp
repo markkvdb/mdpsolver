@@ -20,10 +20,10 @@ try
         Init init{1,        // ccm
                   0.2,      // cpm
                   0.5,      // C
-                  50,       // nStates
+                  20,       // nStates
                   1,        // dL
-                  60,       // pi
-                  50,       // nRates
+                  30,       // pi
+                  20,       // nRates
                   1,        // mu
                   2,        // var
                   1,        // dT

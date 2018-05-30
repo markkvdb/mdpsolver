@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <tuple>
+#include <random>
 
 #include "../init/init.h"
 
@@ -50,16 +51,24 @@ class MDP
     // Value iteration parameter
     num_t const d_eps;
 
+    // Heuristic
+    std::vector<std::array<int, 2> > d_optimalMaintenanceHeuristic;
+    std::vector<std::array<int, 2> > d_optimalProductionHeuristic;
+
+    std::vector<num_t> d_valueAHeuristic;
+    std::vector<num_t> d_valueBHeuristic;
+
+    std::vector<num_t> d_expectedCostHeuristic;
+
+
     public:
         MDP() = delete;
         MDP(Init const &init, bool jumpHeuristic = false);
 
         void    solve();
-        void    write_solution() const;
+        void    write_solution();
         void    print_all_info() const;
-        num_t   applied_policy(std::vector<std::array<int, 2> > maintenancePolicy,
-                               std::vector<std::array<int, 2> > productionPolicy,
-                               int simTime) const;
+        void    print_policy(std::vector<std::array<int, 2>> const &policy) const;
         
         size_t get_id() const;
 
@@ -69,6 +78,27 @@ class MDP
         void    exp_cost();
         bool    converged() const;
         num_t   direct_costs(int state, int mainAction) const;
+
+        // Heuristic functions
+        num_t   cost_heuristic(bool mHeuristic, bool pHeuristic);
+        num_t   applied_policy(std::vector<std::array<int, 2> > maintenancePolicy,
+                               std::vector<std::array<int, 2> > productionPolicy,
+                               int simTime) const;
+        void    set_maintenance_matrix(int T_r, int T_o);
+        num_t   expected_cost_heuristic1(int state1, int state2, int idxState);
+        num_t   expected_cost_heuristic2(int state1, int state2, int idxState);
+        void    exp_cost_heuristic1();
+        void    exp_cost_heuristic2();
+        num_t   value_costs_heuristic1(int state1, int state2, int idxState);
+        num_t   value_costs_heuristic2(int state1, int state2, int idxState);
+        num_t   value_costs_heuristic3(int state1, int state2, int idxState);
+        void    value_cost_heuristic1();
+        void    value_cost_heuristic2();
+        void    value_cost_heuristic3();
+        void    solve_heuristic(bool mHeuristic, bool pHeuristic, int T_r, int T_o);
+        bool    converged_heuristic() const;
+
+        std::vector<std::vector<std::discrete_distribution<>>> distribution_sampler() const;
 
         // Functions for 2 unit system
         num_t   value_costs(int state1, int state2, int idxState);

@@ -6,9 +6,9 @@ library(tidyverse)
 
 grid_size = 10
 
-base_experiment = tibble(ccm = 1.0,
-                         cpm = 0.2,
-                         C = 0.5,
+base_experiment = tibble(ccm = 11.0,
+                         cpm = 5.0,
+                         C = 4.0,
                          nStates = 30,
                          dL = 1.0,
                          pi = 40,
@@ -33,6 +33,16 @@ create_experiments = function(variableName, values) {
   
   return(new_experiments)
 }
+
+# Set pi
+pi_options = seq(30, 40, 50)
+experiments = experiments %>%
+  bind_rows(create_experiments("pi", pi_options))
+
+# Set alpha
+alpha_options = seq(0, 1, 1.5)
+experiments = experiments %>%
+  bind_rows(create_experiments("alpha", pi_options))
 
 # Variance experiments
 var_options = seq(0.5, 5, length.out=grid_size)
