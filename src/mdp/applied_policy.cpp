@@ -8,8 +8,8 @@
  * Or do we determine the thresholds of our maintenancePolicy?
  */
 
-num_t MDP::applied_policy(std::vector<std::array<int, 2>> maintenancePolicy,
-                          std::vector<std::array<int, 2>> productionPolicy,
+num_t MDP::applied_policy(std::vector<std::array<int, 2> > maintenancePolicy,
+                          std::vector<std::array<int, 2> > productionPolicy,
                           int simTime) const
 {
     double totalCosts = 0;

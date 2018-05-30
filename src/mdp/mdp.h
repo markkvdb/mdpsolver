@@ -20,8 +20,8 @@ class MDP
     std::vector<num_t> d_expectedCost;
 
     // Save optimal actions
-    std::vector<std::array<int, 2>> d_optimalMaintenance;
-    std::vector<std::array<int, 2>> d_optimalProduction;
+    std::vector<std::array<int, 2> > d_optimalMaintenance;
+    std::vector<std::array<int, 2> > d_optimalProduction;
     // std::vector<std::array<int, 3>> d_optimalMaintenance;
     // std::vector<std::array<int, 3>> d_optimalProduction;
 
@@ -57,8 +57,8 @@ class MDP
         void    solve();
         void    write_solution() const;
         void    print_all_info() const;
-        num_t   applied_policy(std::vector<std::array<int, 2>> maintenancePolicy,
-                               std::vector<std::array<int, 2>> productionPolicy,
+        num_t   applied_policy(std::vector<std::array<int, 2> > maintenancePolicy,
+                               std::vector<std::array<int, 2> > productionPolicy,
                                int simTime) const;
         
         size_t get_id() const;
