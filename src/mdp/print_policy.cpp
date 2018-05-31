@@ -20,4 +20,5 @@ void MDP::print_policy(vector<array<int, 2>> const &policy) const
             cout << setw(6) << string("(") + to_string(policy[hash(sdx1, sdx2)][0]) + string(",") + to_string(policy[hash(sdx1, sdx2)][1]) + string(")") << ' ';
         cout << endl;
     }
+    cout << endl << endl;
 }

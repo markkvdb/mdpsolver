@@ -29,8 +29,8 @@ MDP::MDP(Init const &init, bool jumpHeuristic)
     d_valueBHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
     d_expectedCostHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0))
 {
-    if (d_pi < d_nRates || d_pi > (2 * d_nRates))
-        throw string("Pi should be between nRates and 2*nRates");
+    if (d_pi > 2 * (d_nRates-1))
+        throw string("Error: pi should be feasible for units");
 
     ++s_id;
 }

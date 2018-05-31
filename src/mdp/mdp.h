@@ -65,10 +65,12 @@ class MDP
         MDP() = delete;
         MDP(Init const &init, bool jumpHeuristic = false);
 
-        void    solve();
-        void    write_solution();
-        void    print_all_info() const;
-        void    print_policy(std::vector<std::array<int, 2>> const &policy) const;
+        void        solve();
+        void        write_solution();
+        void        print_all_info() const;
+        void        print_policy(std::vector<std::array<int, 2>> const &policy) const;
+        std::string print_policy_file(std::vector<std::array<int, 2>> const &maintenancePolicy,
+                                      std::vector<std::array<int, 2>> const &productionPolicy) const;
         
         size_t get_id() const;
 

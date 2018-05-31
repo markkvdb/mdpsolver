@@ -20,12 +20,12 @@ try
         Init init{1,        // ccm
                   0.2,      // cpm
                   0.5,      // C
-                  20,       // nStates
+                  21,       // nStates
                   1,        // dL
-                  30,       // pi
-                  20,       // nRates
+                  20,       // pi
+                  21,       // nRates
                   1,        // mu
-                  2,        // var
+                  5,        // var
                   1,        // dT
                   0.1,      // beta
                   1.5,      // alpha
@@ -35,6 +35,7 @@ try
                  };
 
         // Initialise, solve and write mdp
+        init.printAllInfo();
         MDP mdp{init, false};
         mdp.solve();
         mdp.write_solution();

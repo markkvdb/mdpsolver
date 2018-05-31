@@ -13,22 +13,7 @@ void MDP::write_solution()
     // Save the optimal policy
     ofstream outputFile;
     outputFile.open("output/optimal_policy" + to_string(d_id) + ".csv");
-
-    // Define header of the file (space separated)
-    outputFile << "state1 state2 maintenance1 maintenance2 production1 production2" << endl;
-
-    // Loop over all states
-    int idxState = 0;
-    for (int sdx1 = 0; sdx1 != d_nStates; ++sdx1)
-    {
-        for (int sdx2 = 0; sdx2 != d_nStates; ++sdx2)
-        {
-            outputFile << sdx1 << ' ' << sdx2 << ' ';
-            outputFile << d_optimalMaintenance[idxState][0] << ' ' << d_optimalMaintenance[idxState][1] << ' ';
-            outputFile << d_optimalProduction[idxState][0] << ' ' << d_optimalProduction[idxState][1] << endl;
-            ++idxState;
-        }
-    }
+    outputFile << print_policy_file(d_optimalMaintenance, d_optimalProduction);
     outputFile.close();
 
     // Save optimal values
@@ -43,9 +28,28 @@ void MDP::write_solution()
     outputFile << bs::approximate_gain(d_valueB, d_valueA) << endl;
     outputFile.close();
 
-    // Obtain heuristic value
-    num_t heuristicCost = cost_heuristic(true, true);
-    print_policy(d_optimalMaintenanceHeuristic);
-    print_policy(d_optimalProductionHeuristic);
-    cout << heuristicCost << endl;
+    // Heuristic information
+
+    // Heuristic 1
+    outputFile.open("output/heuristic1_policy" + to_string(d_id) + ".csv");
+    num_t heuristicCost1 = cost_heuristic(true, false);
+    outputFile << print_policy_file(d_optimalMaintenanceHeuristic, d_optimalProductionHeuristic);
+    outputFile.close();
+
+    // Heuristic 2
+    outputFile.open("output/heuristic2_policy" + to_string(d_id) + ".csv");
+    num_t heuristicCost2 = cost_heuristic(false, true);
+    outputFile << print_policy_file(d_optimalMaintenanceHeuristic, d_optimalProductionHeuristic);
+    outputFile.close();
+
+    // Heuristic 3
+    outputFile.open("output/heuristic3_policy" + to_string(d_id) + ".csv");
+    num_t heuristicCost3 = cost_heuristic(true, true);
+    outputFile << print_policy_file(d_optimalMaintenanceHeuristic, d_optimalProductionHeuristic);
+    outputFile.close();
+
+
+    outputFile.open("output/approximate_gain_heuristics" + to_string(d_id));
+    outputFile << heuristicCost1 << ' ' << heuristicCost2 << ' ' << heuristicCost3 << endl;
+    outputFile.close();
 }

@@ -58,7 +58,10 @@ num_t MDP::expected_cost_heuristic2(int state1, int state2, int idxState)
     // Select minimum costs for all possible production states
     for (int pdx1 = (d_pi - d_nRates + 1); pdx1 != d_nRates; ++pdx1)
     {
-        int pdx2 = d_pi - pdx1;
+        int pdx2 = 0;
+        if (pdx1 < d_pi)
+            pdx2 = d_pi - pdx1;
+        
         if (not feasible_production(state1, state2, pdx1, pdx2))
             continue;
 

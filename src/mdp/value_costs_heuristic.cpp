@@ -10,7 +10,7 @@ num_t MDP::value_costs_heuristic1(int state1, int state2, int idxState)
     int s1 = (adx1 == 0) ? state1 : 0;
     int s2 = (adx2 == 0) ? state2 : 0;
 
-    return direct_cost(state1, state2, adx1, adx2) + d_expectedCost[hash(s1, s2)];
+    return direct_cost(state1, state2, adx1, adx2) + d_expectedCostHeuristic[hash(s1, s2)];
 }
 
 /*

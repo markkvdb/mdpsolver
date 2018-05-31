@@ -15,7 +15,7 @@ num_t MDP::cost_heuristic(bool mHeuristic, bool pHeuristic)
     {
         for (int T_r = d_nStates / 2; T_r != d_nStates; ++T_r)
         {
-            for (int T_o = 0; T_o != T_r; ++T_o)
+            for (int T_o = 0; T_o <= T_r; ++T_o)
             {
                 // Evaluate policy
                 solve_heuristic(mHeuristic, pHeuristic, T_r, T_o);
