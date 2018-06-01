@@ -40,27 +40,21 @@
 
 \section{Introduction}	
 % Good maintenance policies are required
-Maintenance cost can constitute a large part of the total production costs. For example, \cite{GRABER2004861} states that maintenance costs can be at much as 30 percent of production costs for power plants, while \cite{BEVILACQUA200071} give an estimate of between 15 and 70 percent of the total production costs. For this reason, maintenance strategies have been extensively researched in the past decades. Reviews of past research have been published (CITE). Condition-based maintenance (CBM) is an advanced maintenance strategy that is based on performance and/or parameter monitoring and basing subsequent actions on the monitoring. 
+Maintenance cost can constitute a large part of the total production costs. For example, \cite{GRABER2004861} states that maintenance costs can be at much as 30 percent of production costs for power plants, while \cite{BEVILACQUA200071} give an estimate of between 15 and 70 percent of the total production costs. For this reason, maintenance strategies have been extensively researched in the past decades. Reviews of past research have been published \citep{VANHORENBEEK2013499, OLDEKEIZER2017405}. Condition-based maintenance (CBM) is an advanced maintenance strategy that is based on performance and/or parameter monitoring and basing subsequent actions on the monitoring. 
 
-Condition-based maintenance policies have been proposed for multi-unit systems with economic dependence \citep{OLDEKEIZER2016531}. \cite{OLDEKEIZER2018319} extend this research by including load sharing between units, that is, the deterioration of the functioning units is affected by the number of functioning units, where it is assumed that the load is shared uniformly over all functioning units. In this paper we consider a system where we relax this assumption and allow the load of all functioning units to depend on the current deterioration level of these units.
+Condition-based maintenance policies have been proposed for multi-unit systems with economic dependence \citep{OLDEKEIZER2016531}. \cite{OLDEKEIZER2018319} extend this research by including load sharing between units, that is, the deterioration of the functioning units is affected by the number of functioning units, where it is assumed that the load is shared uniformly over all functioning units. In this paper, we consider a system where we relax this assumption and allow the load of all functioning units to depend on the current deterioration level of these units. Setting the load of the functioning units allows to cluster maintenance more effectively. In the rest of the paper, I will use the terminology production instead of load, however observe that production does not assumes the production of an item. As I will show in this paper, the effectiveness of setting the production (load) increases with the economic dependence between units. 
 
-The coupling of production and maintenance has been the subject of several studies in recent years. Li and Ni (2009 Jin, X., L. Li, and J. Ni. 2009. “Option Model for Joint Production and Preventive Maintenance System.” International Journal of Production Economics 119(2): 347–353.
-[Crossref], [Web of Science ®], [Google Scholar]
-) present an option-based cost model for scheduling a joint production and maintenance policy for a single-period, single-product system.
-
+The coupling of production and maintenance has been the subject of several studies in recent years. \cite{doi:10.1080/00207543.2013.843037} present an option-based cost model for scheduling a joint production and maintenance policy for a single-period, single-product system. \cite{doi:10.1080/00207543.2016.1174343}  study an integrated control strategy of production and maintenance for a machining system which produces a single type of product to meet the constant demand. The authors consider a single-unit system with a preventive maintenance policy. 
 
 Offshore wind farms is one of the renewable energy solutions. Since the operation and maintenance costs represent a substantial portion of the total life cycle costs of these offshore wind farms \cite{hau2003wind}, reliability and condition strategies have drawn increasing interest for decreasing these costs, e.g. \cite{krokoszinski2003efficiency}. Existing CBM methods for offshore wind farm systems deal with wind turbines as individual components separately \citep{avner2007reliability}. Later maintenance strategies where economic dependence for maintenance actions between wind turbines is taken into account have gained interest \citep{tian2011condition}. The authors claim a maintenance costs reduction of up to 44.42\% compared to maintenance strategies that do not take the economic dependence into account. This reduction is mostly due to the fact that it exploits the large fixed costs from and cluster maintenance actions. One element of the fixed costs component is the cost of sending a maintenance team to the wind farm,, which generally requires expensive vessels.
 
-In this paper, we consider a joint production and maintenance strategy for a multi-unit system. We formulate the system as a Markov Decision Process and analyse the structural properties of the optimal policies. Our model extends the model of \cite{OLDEKEIZER2018319} by allowing the load sharing to be set for all units. The deterioration process of the units is modelled by a discrete-time Markov chain with a known transition probability matrix. The load sharing and maintenance strategy are jointly optimised, while in traditional methods the load sharing is set be uniform for all units. 
+In this paper, we consider a joint production and maintenance strategy for a multi-unit system. We formulate the system as a Markov Decision Process and analyse the structural properties of the optimal policies. Our model extends the model of \cite{OLDEKEIZER2018319} by allowing the production (load) to be set for all units. The deterioration process of the units is modelled by a discrete-time Markov chain with a known transition probability matrix. The production and maintenance strategy are jointly optimised, while in traditional methods the production is set be uniform for all functioning units. 
 
 The remainder of the paper is organised as follows. Section 2 provides the definition and formulation of the system. Section 3 provides a description of the Markov Decision Process used to model the system introduced in Section 2. In Section 4 and 5 the structural properties of the optimal policies of a system with respectively 2 and 3 units is analysed. Conclusions and future research directions are provided in Section 6.
-% For systems with multiple units, there exists dependence between the units. 
-
-% Windmills require expensive fixed costs, so clustering maintenance can be profitable. In many windmill contracts a specified production has to be met for the total windpark. Try to combine production with maintenance policies.
 
 
 \section{System formulation}
-We consider a discrete-time system consisting of $N$ identical components, which are subject to load sharing and economic dependence. We denote the set of units as $\mathcal{I} = \{1, \dots, n\}$. The total load that has to be met during every time period is denoted $\pi$.  Let $x_i$ denote the deterioration state of unit $i$, which deteriorates according to a discrete-time Markov chain with deterioration states $X = \{0, 1, \dots, L\}$. State $0$ represents the as-good-as-new state, $L-1$ denotes the most deteriorated state such that the unit still functions and state $L$ the failed state. We assume that the load capacity of a unit is not affected by the deterioration state. A schematic overview of the events in one time period is presented in Figure 1.
+We consider a discrete-time system consisting of $N$ identical components, which are subject to variable production and economic dependence. We denote the set of units as $\mathcal{I} = \{1, \dots, n\}$. The total production that has to be met during every time period is denoted $\pi$.  Let $x_i$ denote the deterioration state of unit $i$, which deteriorates according to a discrete-time Markov chain with deterioration states $X = \{0, 1, \dots, L\}$. State $0$ represents the as-good-as-new state, $L-1$ denotes the most deteriorated state such that the unit still functions and state $L$ the failed state. We assume that the production capacity of a unit is not affected by the deterioration state. A schematic overview of the events in one time period is presented in Figure 1.
 
 \begin{figure}[H]
 	\centering
@@ -88,7 +82,7 @@ We consider a discrete-time system consisting of $N$ identical components, which
 	\caption{Order of events for time epoch $t$.}
 \end{figure}
 
-\subsection{Maintenance and load actions}
+\subsection{Maintenance and production actions}
 The deterioration state of each unit is known at the beginning of each time period. This assumption becomes is justified for an increasing number of applications, due to better monitoring equipment. Maintenance is assumed to take negligible time and is performed after the deterioration states of each unit is observed. Preventive maintenance is performed at a cost of $c_\text{pm}$ if the unit has not reached the failed state, whereas a corrective maintenance action is performed in the failed state at a cost of $c_\text{cm}$. Generally, the cost of preventive maintenance is lower than the corrective maintenance action ($c_\text{pm} < c_\text{cm}$). Performing maintenance on a unit instantanously brings it back to the as-good-as new state. The economic dependence is included in the form of a fixed cost $C$ for performing maintenance for a time period. The cost is incurred when at least one unit will be maintained.
 
 After selecting the maintenance action, we also have to set the production rate of each unit. Each unit can produce at most $m+1$ different production rates, ranging from $0$ to $1$ (maximum production). The possible production rates are uniformly distributed over the interval. If a unit is in the failed state, we cannot produce, so the production rate of this unit is set to $0$. For all other deteriorating levels, we can select one of the $m+1$ production rates.
@@ -188,33 +182,30 @@ C + \sum_{i=1}^{n}c(x_i, r_i), &\text{if } r \text{ contains a maintenance actio
 $$
 In words, this means that if we do not perform maintenance on any unit for a given time period, we do not incur any costs. However, if we do perform maintenance, we incur the fixed cost $C$ and some corrective or preventive costs depending on the state of the maintained unit.
 \subsection{Performance criteria}
-As a performance criterion, we are interested in minimising the long-run average cost per time unit. In this way we can quantify the maintenance costs of a system over the life cycle, and identify the benefits of being able to set the load of each unit. 
+As a performance criterion, we are interested in minimising the long-run average cost per time unit. In this way we can quantify the maintenance costs of a system over the life cycle, and identify the benefits of being able to set the production of each unit. 
 
 \section{Numerical results two-unit system}
-In this Section we will investigate the key features of the optimal maintenance and production policy for a two-unit system using the MDP as described in Section 3. Similar to \cite{OLDEKEIZER2018319} we select preventive maintenance costs $c_\text{pm} = 5$, set-up cost $C = 4$, and a corrective maintenance cost $c_\text{cm} = 11$. The rate parameter under the maximum load rate is $\lambda_{\text{max}} = 0.7$ and the scale parameter $\gamma = 1$. The failure level $L$ and the number of possible production rates are set to 30. We vary the total load $\pi$ with values 30, 40 and 50. For $\pi = 50$, one unit can handle all the load and for $\pi = 50$ we do not have much overcapacity in the system. We set $\alpha = 0.1$, such that the deterioration when a unit is not operating is low. We consider three different values for $\beta$:  $0$ (deterioration rate does not depend on production), $1$ (deterioration rate depends linearly on production) and $1.5$ (deterioration rate is convex in the production).
-
+In this Section we will investigate the key features of the optimal maintenance and production policy for a two-unit system using the MDP as described in Section 3. Similar to \cite{OLDEKEIZER2018319} we select preventive maintenance costs $c_\text{pm} = 5$, set-up cost $C = 4$, and a corrective maintenance cost $c_\text{cm} = 11$. The rate parameter under the maximum production rate is $\lambda_{\text{max}} = 0.7$ and the scale parameter $\gamma = 1$. The failure level $L$ and the number of possible production rates are set to 25 and 26, respectively. We vary the total production $\pi$ with values 20, 30 and 40. For $\pi = 20$, one unit can handle all the production and for $\pi = 40$ we do not have much overcapacity in the system. We set $\alpha = 0.1$, such that the deterioration when a unit is not operating is low. We consider three different values for $\beta$:  $0$ (deterioration rate does not depend on production), $1$ (deterioration rate depends linearly on production) and $1.5$ (deterioration rate is convex in the production).
 
 
 
 \subsection{Benchmark policies}
 Since the action space of our problem consists of a maintenance action and a production action, we distinguish between a benchmark for the maintenance action and the production action. 
 
-In the literature, condition-based maintenance is often implemented in the form of a threshold policy (CITE), or an opportunistic threshold policy \citep{ZHANG2015176}. In the former policy, if the deterioration level of a unit is at or exceed a threshold level $T_r$, we perform a maintenance action. The opportunistic policy adds an additional step to the threshold policy: if an maintenance action is initiated, then all units that have a deterioration state higher or equal to $T_o$ are also maintained in that time period. The optimal threshold values for $T_r$ and $T_o$ are found using a grid search procedure. Due to the economic dependence (fixed cost of maintenance) and the liberty to set the production rate of the components, this policy is probably not optimal.
+In the literature, condition-based maintenance is often implemented in the form of a threshold policy (CITE), or an opportunistic threshold policy \citep{ZHANG2015176, ZHOU2009361} . In the former policy, if the deterioration level of a unit is at or exceed a threshold level $T_r$, we perform a maintenance action. The opportunistic policy adds an additional step to the threshold policy: if an maintenance action is initiated, then all units that have a deterioration state higher or equal to $T_o$ are also maintained in that time period. The optimal threshold values for $T_r$ and $T_o$ are found using a grid search procedure. Due to the economic dependence (fixed cost of maintenance) and the liberty to set the production rate of the components, this policy is probably not optimal. From Figure ?? observe that the optimal maintenance policy is not an opportunistic policy.
 
 \textbf{[[Note: I think it is unfair to compare the optimal policy to the standard threshold policy, since this policy is equal or worse than the opportunistic policy. ]]}
 
-Additionally, we need a benchmark policy for the production policy. Inspired by the load sharing formulation in \cite{OLDEKEIZER2018319}, we will use the following benchmark for the production policy: For all system states determine the optimal selection of functioning units, where all functioning units share the load uniformly. The optimal selection is found by minimising the long-run average  cost per time unit.
+Additionally, we need a benchmark policy for the production policy. Inspired by the load sharing formulation in \cite{OLDEKEIZER2018319}, we will use the following benchmark for the production policy: For all system states determine the optimal selection of functioning units, where the selected units share the total production $\pi$ uniformly. The optimal selection is found by minimising the long-run average  cost per time unit.
+
 
 Table (???) presents the 
 
 
+\subsection{Sensitivity analysis with respect to the maintenance set-up cost}
+To investigate how the optimal policy and relative effectiveness of the optimal policy compared to the heuristics varies for different levels of economic dependence
 
-\subsection{Sensitivity analysis}
-\begin{enumerate}
-	\item Effect of fixed costs. More or less clustered maintenance.
-	\item Effect of variance.
-	
-\end{enumerate}
+\subsection{Sensitivity analysis with respect to variation in the deterioration process}
 
 \section{Numerical results three-unit system}
 
@@ -222,7 +213,7 @@ Table (???) presents the
 % Summary
 
 % Future research
-In this paper, I do not include dependence between the capacity of units and its deterioration state. 
+Directions for future research in the direction of joint production and maintenance policies for multi-unit systems could be: 1) include dependence between the production capacity of units and its deterioration state, 2) include lead time for planning maintenance and 3) model dependence between the deterioration process of all units due to external shocks. The first extension could be realistic in some applications where the production of a unit is affected by the deterioration of that unit, e.g., semiconductor manufacturing \citep{kazaz2013impact}. The second direction is relevant for systems that have a high frequency of maintenance actions relative to the life cycle of the system. The last extension could be relevant when units are affected by, for example, weather conditions. It is realistic to assume that the deterioration of identical units is impacted in a similar way due to bad weather. 
 
 \bibliographystyle{IEEEtranSN} 
 \bibliography{mylib}
