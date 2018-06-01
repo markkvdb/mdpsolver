@@ -20,7 +20,6 @@ void MDP::write_solution()
     outputFile.open("output/optimal_values" + to_string(d_id) + ".csv");
     for (num_t const val: d_valueB)
         outputFile << val << ' ';
-    
     outputFile.close();
 
     // Save approximation gain
@@ -31,20 +30,20 @@ void MDP::write_solution()
     // Heuristic information
 
     // Heuristic 1
-    outputFile.open("output/heuristic1_policy" + to_string(d_id) + ".csv");
     num_t heuristicCost1 = cost_heuristic(true, false);
+    outputFile.open("output/heuristic1_policy" + to_string(d_id) + ".csv");
     outputFile << print_policy_file(d_optimalMaintenanceHeuristic, d_optimalProductionHeuristic);
     outputFile.close();
 
     // Heuristic 2
-    outputFile.open("output/heuristic2_policy" + to_string(d_id) + ".csv");
     num_t heuristicCost2 = cost_heuristic(false, true);
+    outputFile.open("output/heuristic2_policy" + to_string(d_id) + ".csv");
     outputFile << print_policy_file(d_optimalMaintenanceHeuristic, d_optimalProductionHeuristic);
     outputFile.close();
 
     // Heuristic 3
-    outputFile.open("output/heuristic3_policy" + to_string(d_id) + ".csv");
     num_t heuristicCost3 = cost_heuristic(true, true);
+    outputFile.open("output/heuristic3_policy" + to_string(d_id) + ".csv");
     outputFile << print_policy_file(d_optimalMaintenanceHeuristic, d_optimalProductionHeuristic);
     outputFile.close();
 

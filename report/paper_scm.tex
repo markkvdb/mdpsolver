@@ -26,6 +26,7 @@
 \usepackage{ctable}
 \usepackage{subfig}
 \usepackage{dsfont}
+\usepackage{caption}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em}
@@ -46,6 +47,7 @@ Condition-based maintenance policies have been proposed for multi-unit systems w
 
 The coupling of production and maintenance has been the subject of several studies in recent years. \cite{doi:10.1080/00207543.2013.843037} present an option-based cost model for scheduling a joint production and maintenance policy for a single-period, single-product system. \cite{doi:10.1080/00207543.2016.1174343}  study an integrated control strategy of production and maintenance for a machining system which produces a single type of product to meet the constant demand. The authors consider a single-unit system with a preventive maintenance policy. 
 
+\textbf{[[Next paragraph is still detached from the rest of the story. Have to fit this in somehow. ]]}
 Offshore wind farms is one of the renewable energy solutions. Since the operation and maintenance costs represent a substantial portion of the total life cycle costs of these offshore wind farms \cite{hau2003wind}, reliability and condition strategies have drawn increasing interest for decreasing these costs, e.g. \cite{krokoszinski2003efficiency}. Existing CBM methods for offshore wind farm systems deal with wind turbines as individual components separately \citep{avner2007reliability}. Later maintenance strategies where economic dependence for maintenance actions between wind turbines is taken into account have gained interest \citep{tian2011condition}. The authors claim a maintenance costs reduction of up to 44.42\% compared to maintenance strategies that do not take the economic dependence into account. This reduction is mostly due to the fact that it exploits the large fixed costs from and cluster maintenance actions. One element of the fixed costs component is the cost of sending a maintenance team to the wind farm,, which generally requires expensive vessels.
 
 In this paper, we consider a joint production and maintenance strategy for a multi-unit system. We formulate the system as a Markov Decision Process and analyse the structural properties of the optimal policies. Our model extends the model of \cite{OLDEKEIZER2018319} by allowing the production (load) to be set for all units. The deterioration process of the units is modelled by a discrete-time Markov chain with a known transition probability matrix. The production and maintenance strategy are jointly optimised, while in traditional methods the production is set be uniform for all functioning units. 
@@ -97,7 +99,7 @@ where $\lambda_{\text{max}}$ is the rate parameter under the maximum production 
 $$
 g(u_i) = \beta + (1-\beta)u_i^\alpha.
 $$
-We assume that $0 \leq \beta \leq 1$ and $\alpha \geq 0$, since $g$ should be non-decreasing in $u_i$. If the production rate $u_i$ is zero, then $g$ has value $\beta$ i.e., $\beta$ determines the deterioration rate if the unit does not produce.  The parameter $\alpha$ determines the curvature of the function $g$. In Figure 2 the function $g$ is plotted for several settings of $\alpha$ and $\beta$. 
+We assume that $0 \leq \beta \leq 1$ and $\alpha \geq 0$, since $g$ should be non-decreasing in $u_i$ and positive for all production rates. If the production rate $u_i$ is zero, then $g$ has value $\beta$ i.e., $\beta$ determines the deterioration rate if the unit does not produce.  The parameter $\alpha$ determines the curvature of the function $g$. In Figure 2 the function $g$ is plotted for several settings of $\alpha$ and $\beta$. 
 
 \begin{figure}[H]
 	\centering
@@ -160,8 +162,6 @@ p(x, \tilde{x} \mid u, m) = \prod_{i = 1}^nP_{u_i,m_i}(x_i, \tilde{x}_i),
 $$
 due to independence of the deterioration process of the units.
 
-
-
 \subsection{Expected costs}
 To define the cost for a time unit, we define a function
 $$
@@ -176,8 +176,8 @@ for all states $x_i \in X$ and maintenance actions $r_i \in \{\text{DN}, \text{M
 The expected costs for a time unit by selecting maintenance action $r$ and in state $x$ is given by
 $$
 \bar{c}(x,r) = \begin{cases}
-C + \sum_{i=1}^{n}c(x_i, r_i), &\text{if } r \text{ contains a maintenance action},\\
-0, &\text{otherwise}.
+C + \sum_{i=1}^{n}c(x_i, r_i) &\text{if } r \text{ contains a maintenance action},\\
+0 &\text{otherwise}.
 \end{cases}
 $$
 In words, this means that if we do not perform maintenance on any unit for a given time period, we do not incur any costs. However, if we do perform maintenance, we incur the fixed cost $C$ and some corrective or preventive costs depending on the state of the maintained unit.
@@ -185,9 +185,31 @@ In words, this means that if we do not perform maintenance on any unit for a giv
 As a performance criterion, we are interested in minimising the long-run average cost per time unit. In this way we can quantify the maintenance costs of a system over the life cycle, and identify the benefits of being able to set the production of each unit. 
 
 \section{Numerical results two-unit system}
-In this Section we will investigate the key features of the optimal maintenance and production policy for a two-unit system using the MDP as described in Section 3. Similar to \cite{OLDEKEIZER2018319} we select preventive maintenance costs $c_\text{pm} = 5$, set-up cost $C = 4$, and a corrective maintenance cost $c_\text{cm} = 11$. The rate parameter under the maximum production rate is $\lambda_{\text{max}} = 0.7$ and the scale parameter $\gamma = 1$. The failure level $L$ and the number of possible production rates are set to 25 and 26, respectively. We vary the total production $\pi$ with values 20, 30 and 40. For $\pi = 20$, one unit can handle all the production and for $\pi = 40$ we do not have much overcapacity in the system. We set $\alpha = 0.1$, such that the deterioration when a unit is not operating is low. We consider three different values for $\beta$:  $0$ (deterioration rate does not depend on production), $1$ (deterioration rate depends linearly on production) and $1.5$ (deterioration rate is convex in the production).
+In this section I will discuss the key features of the optimal maintenance and production policy for a two-unit system using the MDP as described in Section 3. Similar to \cite{OLDEKEIZER2018319} we select preventive maintenance costs $c_\text{pm} = 5$, set-up cost $C = 4$, and a corrective maintenance cost $c_\text{cm} = 11$. The rate parameter under the maximum production rate is $\lambda_{\text{max}} = 0.7$ and the scale parameter $\gamma = 1$. The failure level $L$ and the number of possible production rates are set to 25 and 26, respectively. We vary the total production $\pi$ with values 20, 30, 40 and 48. For $\pi = 20$, one unit can handle all the production, whereas for $\pi = 48$ we do not have much overcapacity in the system. We set $\alpha = 0.1$, such that the deterioration rate is low when the unit is not producing. We consider three different values for $\beta$:  $0$ (deterioration rate does not depend on production), $1$ (deterioration rate depends linearly on production) and $1.5$ (deterioration rate is convex in the production).
 
+Figures 3-6 show the optimal policies systems with total production rates of 20, 30, 40 and 48. For every time period we first decide on the maintenance action and subsequently set a production rate for both units. For this reason we do not have to consider the production policies for states in which we perform maintenance. When the system can meet demand with one unit (Figure 3) we observe that maintenance is only performed if either both machines are in a highly deteriorated state, or one unit is a highly deteriorated state and the other is not. The last phenomenon could be explained by the fact that we want to bring the highly deteriorated unit back to the as-good-as-new state, such that, by setting its production rate higher than the other unit, we can bring the deterioration states close to each other to end up clustering the maintenance of both units. Furthermore, we observe that it is optimal to bring the deterioration state of the units close to each other by adjusting the production rate accordingly.
 
+As we increase the total production, we observe a different optimal production policy. When unit 1 (2) is in a `medium' deterioration state and unit 2 (1) is slightly higher (stated marked by the blue (pink) colour), it is optimal to try to bring the deterioration states close to each other by setting the production rate of unit 1 higher. However, when the difference in deterioration in sufficiently large, it is optimal to keep the expected difference in the deterioration state the same.
+\begin{figure}[H] \label{main-prod-policy}
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/optimal_action_plot1}
+	\caption{Optimal maintenance and production policy for a system with $N=2, L=25, m=25, c_\text{pm} = 5, c_\text{cm} = 11, C=4, \beta=0.1, \alpha=1.5, \pi=20$}
+\end{figure}
+\begin{figure}[H] \label{main-prod-policy2}
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/optimal_action_plot2}
+	\caption{Optimal maintenance and production policy for a system with $N=2, L=25, m=25, c_\text{pm} = 5, c_\text{cm} = 11, C=4, \beta=0.1, \alpha=1.5, \pi=30$}
+\end{figure}
+\begin{figure}[H] \label{main-prod-policy3}
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/optimal_action_plot3}
+	\caption{Optimal maintenance and production policy for a system with $N=2, L=25, m=25, c_\text{pm} = 5, c_\text{cm} = 11, C=4, \beta=0.1, \alpha=1.5, \pi=40$}
+\end{figure}
+\begin{figure}[H] \label{main-prod-policy4}
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/optimal_action_plot0}
+	\caption{Optimal maintenance and production policy for a system with $N=2, L=25, m=25, c_\text{pm} = 5, c_\text{cm} = 11, C=4, \beta=0.1, \alpha=1.5, \pi=48$}
+\end{figure}
 
 \subsection{Benchmark policies}
 Since the action space of our problem consists of a maintenance action and a production action, we distinguish between a benchmark for the maintenance action and the production action. 
@@ -198,9 +220,28 @@ In the literature, condition-based maintenance is often implemented in the form 
 
 Additionally, we need a benchmark policy for the production policy. Inspired by the load sharing formulation in \cite{OLDEKEIZER2018319}, we will use the following benchmark for the production policy: For all system states determine the optimal selection of functioning units, where the selected units share the total production $\pi$ uniformly. The optimal selection is found by minimising the long-run average  cost per time unit.
 
+To compare the optimal policy of the maintenance and production policy to the heuristic algorithms, we define the following combinations of heuristics:
+\begin{itemize}
+	\item \textit{Heuristic 1}: maintenance policy determined by the heuristic algorithm and an optimal production policy;
+	\item \textit{Heuristic 2}: an optimal maintenance policy and a heuristic production policy;
+	\item \textit{Heuristic 3}: heuristics for both the maintenance and production policy.
+\end{itemize}
+Heuristic 2 is used to quantifies the benefit of allowing for a variable production rate, whereas heuristic 3 is combination of popular policies that are widely used in practice. 
 
-Table (???) presents the 
+Table 1 shows that for the different total productions the additional average costs can be as much as $3.5$\%. The additional average costs for heuristic 1 is lower than heuristic 2, \textbf{[[So....]]}. 
 
+\ctable[
+pos=h,
+caption={The minimal long-run average cost per time unit for the heuristic policies with different values for $\pi$}
+]{l c c c c}{}{
+	\FL
+	Total production & \multicolumn{3}{c}{Average cost} & Optimal thresholds \NN
+	 & Heuristic 1 & Heuristic 2 & Heuristic 3 & Heuristic 1 \ML
+	$\pi = 20$ & 0.1307 (+0.06\%) & 0.1320 (+1.80\%) & 0.1351 (+3.46\%) & $T_r = 24$, $T_o = 16$ \NN
+	$\pi = 30$ & 0.6378 (+0.34\%) & 0.6404 (+0.76\%) & 0.6417 (+0.96\%) & $T_r = 23$, $T_o = 15$ \NN
+	$\pi = 40$ & 0.6521 (+0.19\%) & 0.6543 (+0.56\%) & 0.6552 (+0.66\%) & $T_r = 23$, $T_o = 13$ \NN
+	$\pi = 48$ & 0.5976 (+0.11\%) & 0.6047 (+1.28\%)& 0.6052 (+1.38\%) & $T_r = 23$, $T_o = 11$ \LL
+}
 
 \subsection{Sensitivity analysis with respect to the maintenance set-up cost}
 To investigate how the optimal policy and relative effectiveness of the optimal policy compared to the heuristics varies for different levels of economic dependence
@@ -214,6 +255,15 @@ To investigate how the optimal policy and relative effectiveness of the optimal 
 
 % Future research
 Directions for future research in the direction of joint production and maintenance policies for multi-unit systems could be: 1) include dependence between the production capacity of units and its deterioration state, 2) include lead time for planning maintenance and 3) model dependence between the deterioration process of all units due to external shocks. The first extension could be realistic in some applications where the production of a unit is affected by the deterioration of that unit, e.g., semiconductor manufacturing \citep{kazaz2013impact}. The second direction is relevant for systems that have a high frequency of maintenance actions relative to the life cycle of the system. The last extension could be relevant when units are affected by, for example, weather conditions. It is realistic to assume that the deterioration of identical units is impacted in a similar way due to bad weather. 
+
+\section{Notes}
+\begin{itemize}
+	\item I have not figured out yet how to set figures next to each other. My apologies. 
+	\item The colours of the optimal policy plots are disturbing. I do have ideas for different visualisations, however if you have any ideas, feel free to write them in your review.
+	\item The practical relevance of heuristic 1 is still unclear for me. I might leave it out.
+	\item I do not show absolute values of production in the optimal policy plot to not clutter the message, however I feel like key features of the optimal policy are missing in this way.
+\end{itemize}
+
 
 \bibliographystyle{IEEEtranSN} 
 \bibliography{mylib}
