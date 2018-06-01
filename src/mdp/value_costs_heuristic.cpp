@@ -5,8 +5,8 @@
  */
 num_t MDP::value_costs_heuristic1(int state1, int state2, int idxState)
 {
-    int adx1 = d_optimalMaintenanceHeuristic[idxState][0];
-    int adx2 = d_optimalMaintenanceHeuristic[idxState][1];
+    int adx1 = d_maintenanceHeuristic[idxState][0];
+    int adx2 = d_maintenanceHeuristic[idxState][1];
     int s1 = (adx1 == 0) ? state1 : 0;
     int s2 = (adx2 == 0) ? state2 : 0;
 
@@ -54,8 +54,8 @@ num_t MDP::value_costs_heuristic2(int state1, int state2, int idxState)
  */
 num_t MDP::value_costs_heuristic3(int state1, int state2, int idxState)
 {
-    int adx1 = d_optimalMaintenanceHeuristic[idxState][0];
-    int adx2 = d_optimalMaintenanceHeuristic[idxState][1];
+    int adx1 = d_maintenanceHeuristic[idxState][0];
+    int adx2 = d_maintenanceHeuristic[idxState][1];
     int s1 = (adx1 == 0) ? state1 : 0;
     int s2 = (adx2 == 0) ? state2 : 0;
 

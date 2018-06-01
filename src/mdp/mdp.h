@@ -54,6 +54,7 @@ class MDP
     // Heuristic
     std::vector<std::array<int, 2> > d_optimalMaintenanceHeuristic;
     std::vector<std::array<int, 2> > d_optimalProductionHeuristic;
+    std::vector<std::array<int, 2> > d_maintenanceHeuristic;
 
     std::vector<num_t> d_valueAHeuristic;
     std::vector<num_t> d_valueBHeuristic;

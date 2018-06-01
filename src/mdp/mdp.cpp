@@ -25,6 +25,7 @@ MDP::MDP(Init const &init, bool jumpHeuristic)
     d_eps(init.d_eps),
     d_optimalMaintenanceHeuristic(vector<array<int, 2>>(init.d_nStates * init.d_nStates, array<int, 2>())),
     d_optimalProductionHeuristic(vector<array<int, 2>>(init.d_nStates * init.d_nStates, array<int, 2>())),
+    d_maintenanceHeuristic(vector<array<int, 2>>(init.d_nStates * init.d_nStates, array<int, 2>())),
     d_valueAHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
     d_valueBHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
     d_expectedCostHeuristic(vector<num_t>(init.d_nStates * init.d_nStates, 0))

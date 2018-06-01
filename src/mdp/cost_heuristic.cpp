@@ -22,7 +22,10 @@ num_t MDP::cost_heuristic(bool mHeuristic, bool pHeuristic)
                 num_t const tmpCosts = bs::approximate_gain(d_valueBHeuristic, d_valueAHeuristic);
 
                 if (tmpCosts < minCosts)
+                {
                     minCosts = tmpCosts;
+                    d_optimalMaintenanceHeuristic = d_maintenanceHeuristic;
+                }
             }
         }
     } else 
