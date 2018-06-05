@@ -23,8 +23,9 @@ void MDP::write_solution()
     outputFile.close();
 
     // Save approximation gain
+    num_t optimalCost = bs::approximate_gain(d_valueB, d_valueA);
     outputFile.open("output/approximate_gain" + to_string(d_id));
-    outputFile << bs::approximate_gain(d_valueB, d_valueA) << endl;
+    outputFile << optimalCost << endl;
     outputFile.close();
 
     // Heuristic information

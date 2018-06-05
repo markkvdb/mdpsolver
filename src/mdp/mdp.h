@@ -72,6 +72,8 @@ class MDP
         void        print_policy(std::vector<std::array<int, 2>> const &policy) const;
         std::string print_policy_file(std::vector<std::array<int, 2>> const &maintenancePolicy,
                                       std::vector<std::array<int, 2>> const &productionPolicy) const;
+        void        print_latex_table(num_t optimalCost, num_t heuristicCost1, num_t heuristicCost2,
+                                      num_t heuristicCost3) const;
         
         size_t get_id() const;
 
