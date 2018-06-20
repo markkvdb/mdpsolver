@@ -186,7 +186,7 @@ for (heuristic_id in 1:3) {
            opt_maintenance_plot2, width=9, height=7)
     
     # Plot optimal production with rectangles
-    opt_production_plot2 = ggplot(optimal_policy, aes(xmin=state1, xmax=state1_max,
+    opt_production_plot2 = ggplot(heuristic_policy, aes(xmin=state1, xmax=state1_max,
                                                       ymin=state2, ymax=state2_max,
                                                       fill=`Production action`)) +
       geom_rect() + theme_bw() + theme(panel.grid = element_blank(), panel.border = element_blank()) +
@@ -199,7 +199,7 @@ for (heuristic_id in 1:3) {
     
     # Combine both plots
     # Combine plot
-    opt_action_plot = ggplot(optimal_policy, aes(xmin=state1, xmax=state1_max,
+    opt_action_plot = ggplot(heuristic_policy, aes(xmin=state1, xmax=state1_max,
                                                  ymin=state2, ymax=state2_max,
                                                  fill=action)) + 
       geom_rect() + scale_colour_grey() + theme_bw() + theme(panel.grid = element_blank(), panel.border = element_blank()) +

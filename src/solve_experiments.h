@@ -10,8 +10,10 @@
 void solve_experiment(Init const &init)
 {
     // Initialise MDP
+    init.printAllInfo();
     MDP mdp{init, false};
     mdp.solve();
+    mdp.print_all_info();
     mdp.write_solution();
     std::cout << "Solved experiment " << mdp.get_id() << std::endl;
 }
@@ -29,7 +31,6 @@ void solve_from_file()
         while (getline(experimentsFile, line))
         {
             Init init{line};
-            init.printAllInfo();
             init_vec.push_back(init);
         }
         experimentsFile.close();

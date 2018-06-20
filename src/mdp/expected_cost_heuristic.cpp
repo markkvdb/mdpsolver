@@ -13,13 +13,16 @@ num_t MDP::expected_cost_heuristic1(int state1, int state2, int idxState)
     // Check if we should do one working unit
     if (d_pi <= d_nRates)
     {
-        bestVal = expected_costs_heuristic(state1, state2, d_pi, 0);
-        bestProd1 = d_pi;
-        bestProd2 = 0;
+        if (state1 != (d_nStates-1))
+        {
+            bestVal = expected_costs_heuristic(state1, state2, d_pi, 0);
+            bestProd1 = d_pi;
+            bestProd2 = 0;
+        }
 
         num_t const tmpVal2 = expected_costs_heuristic(state1, state2, 0, d_pi);
 
-        if (tmpVal2 < bestVal)
+        if (tmpVal2 < bestVal and state2 != (d_nStates-1))
         {
             bestVal = tmpVal2;
             bestProd1 = 0;
@@ -32,7 +35,7 @@ num_t MDP::expected_cost_heuristic1(int state1, int state2, int idxState)
     int pdx2 = d_pi - pdx1;
     num_t tmpVal3 = expected_costs_heuristic(state1, state2, pdx1, pdx2);
 
-    if (tmpVal3 < bestVal)
+    if (tmpVal3 < bestVal and feasible_production(state1, state2, pdx1, pdx2))
     {
         bestVal = tmpVal3;
         bestProd1 = pdx1;

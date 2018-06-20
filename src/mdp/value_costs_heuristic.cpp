@@ -33,7 +33,7 @@ num_t MDP::value_costs_heuristic2(int state1, int state2, int idxState)
             int s2 = (adx2 == 0) ? state2 : 0;
 
             num_t const tmpVal = direct_cost(state1, state2, adx1, adx2) + d_expectedCostHeuristic[hash(s1, s2)];
-            if (tmpVal < bestVal - gg_eps)
+            if (tmpVal < bestVal)
             {
                 bestVal = tmpVal;
                 bestMain1 = adx1;
