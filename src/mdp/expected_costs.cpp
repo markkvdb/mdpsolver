@@ -16,11 +16,11 @@ num_t MDP::expected_costs(int state1, int state2, int prodRate1, int prodRate2) 
     int maxJump1 = d_nStates-state1-1;
     int maxJump2 = d_nStates-state2-1;
 
-    if (d_jumpHeuristic) 
-    {
-        maxJump1 = min(maxJump1, d_maxJumps[prodRate1]);
-        maxJump2 = min(maxJump2, d_maxJumps[prodRate2]);
-    } 
+    // if (d_jumpHeuristic) 
+    // {
+    //     maxJump1 = min(maxJump1, d_maxJumps[prodRate1]);
+    //     maxJump2 = min(maxJump2, d_maxJumps[prodRate2]);
+    // } 
 
     // Loop over all jump probabilities from 'state1' to 'd_nStates' and obtain costs.
     int idxState = hash(state1, 0);
@@ -39,9 +39,7 @@ num_t MDP::expected_costs(int state1, int state2, int prodRate1, int prodRate2) 
     idxState += state2;
 
     for (int sdx2 = 0; sdx2 != maxJump2; ++sdx2)
-    {
         costs += prop1 * d_prop1[prodRate2][sdx2] * d_valueA[idxState++];
-    }
     costs += prop1 * d_prop2[prodRate2][state2] * d_valueA[idxState++];
 
     return costs;
