@@ -10,7 +10,6 @@
 
 class MDP
 {
-    static size_t   s_id;
     size_t const    d_id;
     
     // Values

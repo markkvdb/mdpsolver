@@ -8,7 +8,7 @@ CCC = g++-8
 # Compiler options 
 # ---------------------------------------------------------------------
 
-CCOPT = -O -std=c++2a -Wall -flto -pipe
+CCOPT = -O -std=c++17 -pthread -Wall -flto -pipe
 
 # ---------------------------------------------------------------------
 # Link options and libraries
@@ -32,9 +32,10 @@ OBJ = $(SRC:%.cpp=%.o)
 
 # ------------------------------------------------------------
 
-clean :
+clean:
 	/bin/rm -rf $(TARGET)
 	/bin/rm -rf $(OBJ)
+	/bin/rm -rf output/*
 
 # ------------------------------------------------------------
 # The code

@@ -1,10 +1,8 @@
 #include "mdp.ih"
 
-size_t MDP::s_id = 0;
-
 MDP::MDP(Init const &init, bool jumpHeuristic)
 :
-    d_id(s_id),
+    d_id(init.d_id),
     d_valueA(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
     d_valueB(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
     d_expectedCost(vector<num_t>(init.d_nStates * init.d_nStates, 0)),
@@ -32,8 +30,6 @@ MDP::MDP(Init const &init, bool jumpHeuristic)
 {
     if (d_pi > 2 * (d_nRates-1))
         throw string("Error: pi should be feasible for units");
-
-    ++s_id;
 }
 
 

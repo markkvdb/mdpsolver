@@ -4,21 +4,20 @@
 #include <iostream>
 #include <fstream>
 
+#include <thread>
+
 #include "init/init.h"
 #include "mdp/mdp.h"
 
-void solve_experiment(Init const &init)
+void solve_experiment(Init const init)
 {
     // Initialise MDP
-    init.printAllInfo();
     MDP mdp{init, false};
     mdp.solve();
-    mdp.print_all_info();
     mdp.write_solution();
-    std::cout << "Solved experiment " << mdp.get_id() << std::endl;
 }
 
-void solve_from_file()
+void solve_from_file(bool const multi_thread)
 {
     // Read experiment file
     std::string line;
@@ -40,7 +39,20 @@ void solve_from_file()
     }
 
     // Solve all experiments in different threads
-    for (Init const &init: init_vec)
-        solve_experiment(init);
+    if (multi_thread)
+    {
+        std::vector<std::thread> thread_vec;
+        for (Init const &init: init_vec)
+            thread_vec.push_back(std::thread(solve_experiment, init));
+        
+        // Wait for all threads to join
+        for (auto &thread: thread_vec)
+            thread.join();
+
+    } else 
+    {
+        for (Init const &init: init_vec)
+            solve_experiment(init);
+    }
 }
 #endif

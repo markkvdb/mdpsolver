@@ -4,23 +4,23 @@
 
 library(tidyverse)
 
-grid_size = 10
-problem_size = 11
+grid_size = 30
+problem_size = 25
 
-base_experiment = tibble(ccm = 11.0,
-                         cpm = 5.0,
-                         C = 4.0,
-                         nStates = 26,
+base_experiment = tibble(ccm = 100,
+                         cpm = 0.2 * ccm,
+                         C = 0.4 * ccm,
+                         nStates = problem_size + 1,
                          dL = 1.0,
-                         pi = 48,
-                         nRates = 26,
+                         pi = problem_size,
+                         nRates = problem_size + 1,
                          mu = 1.0,
                          var = 1.0,
                          dT = 1.0,
                          minProb = 0.99,
                          beta = 0.1,
                          alpha = 1.5,
-                         eps = 0.000001,
+                         eps = 0.0000001,
                          nUnits = 2)
 
 experiments = base_experiment
@@ -35,8 +35,33 @@ create_experiments = function(variableName, values) {
   return(new_experiments)
 }
 
-# Set pi
-pi_options = c(20, 30, 40)
+# Variance experiments
+var_options = seq(0.5, 5, length.out=grid_size)
+experiments = experiments %>%
+  bind_rows(create_experiments("var", var_options))
+
+# Fixed cost effect
+fixed_cost_options = seq(0, 200, length.out=grid_size)
+experiments = experiments %>%
+  bind_rows(create_experiments("C", fixed_cost_options))
+
+# Preventive effect 
+preventive_cost_options = seq(0, 100, length.out=grid_size)
+experiments = experiments %>%
+  bind_rows(create_experiments("cpm", preventive_cost_options))
+
+# Beta
+b_options = seq(0, 1, length.out=grid_size)
+experiments = experiments %>%
+  bind_rows(create_experiments("beta", b_options))
+
+# Alpha
+alpha_options = seq(0, 3, length.out=grid_size)
+experiments = experiments %>%
+  bind_rows(create_experiments("alpha", alpha_options))
+
+# Pi
+pi_options = seq(20, 50, by=5)
 experiments = experiments %>%
   bind_rows(create_experiments("pi", pi_options))
 
@@ -44,16 +69,6 @@ experiments = experiments %>%
 alpha_options = c(0, 0.5, 1)
 experiments = experiments %>%
   bind_rows(create_experiments("alpha", alpha_options))
-
-# Variance experiments
-var_options = seq(0.5, 5, length.out=grid_size)
-experiments = experiments %>%
-  bind_rows(create_experiments("var", var_options))
-
-# Fixed cost effect
-fixed_cost_options = seq(0, 3, length.out=grid_size)
-experiments = experiments %>%
-  bind_rows(create_experiments("C", fixed_cost_options))
 
 
 #### Output the experiments table ####

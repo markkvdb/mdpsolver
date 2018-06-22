@@ -14,12 +14,12 @@ try
 {
     if (argc == 2)
     {
-        solve_from_file();
+        solve_from_file(true);
     } else
     {
-        Init init{1,        // ccm
-                  0.2,      // cpm
-                  0.5,      // C
+        Init init{11.0,        // ccm
+                  5.0,      // cpm
+                  4.0,      // C
                   21,       // nStates
                   1,        // dL
                   20,       // pi
@@ -29,7 +29,7 @@ try
                   1,        // dT
                   0.1,      // beta
                   1.5,      // alpha
-                  0.000005, // eps
+                  0.0000005, // eps
                   0.99,     // minProb
                   2         // nUnits
                  };

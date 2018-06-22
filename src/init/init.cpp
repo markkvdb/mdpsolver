@@ -2,10 +2,13 @@
 
 #include <boost/algorithm/string.hpp>
 
+size_t Init::s_id = 0;
+
 Init::Init(num_t ccm, num_t cpm, num_t C, int nStates, num_t dL, int pi,
            int nRates, num_t mu, num_t var, num_t dT, num_t beta, num_t alpha, num_t eps,
            num_t minSumJump, int nUnits)
 :
+    d_id(s_id),
     d_nUnits(nUnits),
     d_ccm(ccm),
     d_cpm(cpm),
@@ -29,9 +32,12 @@ Init::Init(num_t ccm, num_t cpm, num_t C, int nStates, num_t dL, int pi,
         throw("Number of units should be either 2 or 3");
     
     initialise();
+    ++s_id;
 }
 
-Init::Init(string const &line) 
+Init::Init(string const &line)
+:
+    d_id(s_id)
 {
     // Split line into words seperated by spaces and put it in vector
     vector<string> args;
@@ -69,4 +75,6 @@ Init::Init(string const &line)
 
     // Initialise the rest
     initialise();
+
+    ++s_id;
 }

@@ -13,6 +13,10 @@ class Init
 {
     friend class MDP;
 
+    // ID 
+    static size_t   s_id;
+    size_t const    d_id;
+
     // Number of units
     int d_nUnits;
 
